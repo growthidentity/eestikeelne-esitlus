@@ -2757,8 +2757,12 @@ body {
     </div>
 
     <script>
-    function updateCalculator() {
-        const total = parseFloat(document.getElementById('calcTotal').value) || 0;
+    // Kalkulaatori funktsioon - globaalne
+    window.updateCalculator = function() {
+        const totalInput = document.getElementById('calcTotal');
+        if (!totalInput) return;
+
+        const total = parseFloat(totalInput.value) || 0;
         const eurRate = 0.86;
 
         // Hub on ~12.82% kogu summast (1000/7800 = 0.1282)
@@ -2775,32 +2779,40 @@ body {
         const fmt = (n) => n.toLocaleString('en-US', {maximumFractionDigits: 0});
         const fmtEur = (n) => (n * eurRate).toLocaleString('en-US', {maximumFractionDigits: 0});
 
-        // Update DOM
-        document.getElementById('calcTotalEur').textContent = '~' + fmtEur(total) + '€';
-        document.getElementById('calcHub').textContent = '$' + fmt(hub);
-        document.getElementById('calcHubEur').textContent = '~' + fmtEur(hub) + '€';
-        document.getElementById('calcKapital').textContent = '$' + fmt(kapital);
-        document.getElementById('calcKapitalEur').textContent = '~' + fmtEur(kapital) + '€';
-        document.getElementById('calcKokkuSisse').textContent = '$' + fmt(total);
-        document.getElementById('calcKokkuSisseEur').textContent = '~' + fmtEur(total) + '€';
-        document.getElementById('calcBrutoTagastusHeader').textContent = '$' + fmt(brutoTagastus);
-        document.getElementById('calcBrutoTagastusHeaderEur').textContent = '~' + fmtEur(brutoTagastus) + '€';
-        document.getElementById('calcBrutoTagastus').textContent = '$' + fmt(brutoTagastus);
-        document.getElementById('calcBrutoTagastusEur').textContent = '~' + fmtEur(brutoTagastus) + '€';
-        document.getElementById('calcFee').textContent = '-$' + fmt(fee);
-        document.getElementById('calcFeeEur').textContent = '~-' + fmtEur(fee) + '€';
-        document.getElementById('calcNetoTagastus').textContent = '~$' + fmt(netoTagastus);
-        document.getElementById('calcNetoTagastusEur').textContent = '~' + fmtEur(netoTagastus) + '€';
-        document.getElementById('calcPuhasKasum').textContent = '~$' + fmt(puhasKasum);
-        document.getElementById('calcPuhasKasumEur').textContent = '~' + fmtEur(puhasKasum) + '€';
-        document.getElementById('calcROI').textContent = '~' + roi.toFixed(0) + '%';
-        document.getElementById('calcKuus').innerHTML = '<i class="fas fa-calendar-alt" style="margin-right: 8px; color: #f4d03f;"></i>25 kuud = ~' + kuuTootlus.toFixed(1) + '%/kuu';
-    }
+        // Update DOM - check each element exists
+        const updateEl = (id, text) => { const el = document.getElementById(id); if(el) el.textContent = text; };
+        const updateHTML = (id, html) => { const el = document.getElementById(id); if(el) el.innerHTML = html; };
 
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', function() {
+        updateEl('calcTotalEur', '~' + fmtEur(total) + '€');
+        updateEl('calcHub', '$' + fmt(hub));
+        updateEl('calcHubEur', '~' + fmtEur(hub) + '€');
+        updateEl('calcKapital', '$' + fmt(kapital));
+        updateEl('calcKapitalEur', '~' + fmtEur(kapital) + '€');
+        updateEl('calcKokkuSisse', '$' + fmt(total));
+        updateEl('calcKokkuSisseEur', '~' + fmtEur(total) + '€');
+        updateEl('calcBrutoTagastusHeader', '$' + fmt(brutoTagastus));
+        updateEl('calcBrutoTagastusHeaderEur', '~' + fmtEur(brutoTagastus) + '€');
+        updateEl('calcBrutoTagastus', '$' + fmt(brutoTagastus));
+        updateEl('calcBrutoTagastusEur', '~' + fmtEur(brutoTagastus) + '€');
+        updateEl('calcFee', '-$' + fmt(fee));
+        updateEl('calcFeeEur', '~-' + fmtEur(fee) + '€');
+        updateEl('calcNetoTagastus', '~$' + fmt(netoTagastus));
+        updateEl('calcNetoTagastusEur', '~' + fmtEur(netoTagastus) + '€');
+        updateEl('calcPuhasKasum', '~$' + fmt(puhasKasum));
+        updateEl('calcPuhasKasumEur', '~' + fmtEur(puhasKasum) + '€');
+        updateEl('calcROI', '~' + roi.toFixed(0) + '%');
+        updateHTML('calcKuus', '<i class="fas fa-calendar-alt" style="margin-right: 8px; color: #f4d03f;"></i>25 kuud = ~' + kuuTootlus.toFixed(1) + '%/kuu');
+
+        // Uuenda ka raha võimendamise slaidi kui see eksisteerib
+        if (typeof updateLeverageSlide === 'function') {
+            updateLeverageSlide();
+        }
+    };
+
+    // Initialize - run immediately since script is at end of slide
+    if (document.getElementById('calcTotal')) {
         updateCalculator();
-    });
+    }
     </script>
 </div>
 
