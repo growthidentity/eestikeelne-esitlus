@@ -894,6 +894,1051 @@ body {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
+/* ==================== MOBILE RESPONSIVE STYLES ==================== */
+
+/* Desktop fixes for proper scaling */
+@media screen and (min-width: 1025px) {
+    .slide {
+        overflow-y: auto !important;
+    }
+
+    .premium-slide > div[style*="height: 100%"] {
+        min-height: 100vh;
+        height: auto !important;
+    }
+}
+
+/* Tablet and smaller */
+@media screen and (max-width: 1024px) {
+    .slide-content-wrapper {
+        padding: 30px 40px;
+    }
+
+    .stats-showcase,
+    .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .product-logos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .two-col-layout {
+        gap: 15px;
+    }
+
+    .main-title {
+        font-size: 48px;
+    }
+
+    .subtitle {
+        font-size: 24px;
+    }
+
+    .nav-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 18px;
+    }
+
+    .slide-counter {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile phones */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    .presentation {
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
+    }
+
+    .slide {
+        position: relative !important;
+        height: auto !important;
+        min-height: 100vh;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    .slide.active {
+        display: block !important;
+        overflow-y: auto !important;
+    }
+
+    /* Force ALL slides to be scrollable */
+    .slide > div,
+    .slide > div > div {
+        overflow: visible !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    .slide-content-wrapper {
+        padding: 20px 15px !important;
+        padding-bottom: 100px !important;
+    }
+
+    /* Override inline flex and heights - STRONGER */
+    div[style*="height: 100%"],
+    div[style*="height:100%"] {
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    div[style*="overflow: hidden"],
+    div[style*="overflow:hidden"] {
+        overflow: visible !important;
+    }
+
+    /* Force flex to column on mobile */
+    div[style*="display: flex"][style*="flex-direction: column"][style*="height: 100%"] {
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+
+    /* Premium slides - force content visibility */
+    .premium-slide,
+    .setup-slide,
+    .title-slide,
+    .calculator-premium-slide {
+        overflow-y: auto !important;
+        height: auto !important;
+        min-height: 100vh;
+    }
+
+    .premium-slide > div,
+    .premium-slide > div > div,
+    .setup-slide > div,
+    .calculator-premium-slide > div {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 20px 15px !important;
+        padding-bottom: 100px !important;
+        overflow: visible !important;
+    }
+
+    /* Fix position relative z-index elements */
+    div[style*="position: relative"][style*="z-index: 2"] {
+        height: auto !important;
+        min-height: auto !important;
+        padding-bottom: 80px !important;
+    }
+
+    /* Market selector on setup page */
+    #marketSelector {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .market-option {
+        padding: 12px 8px !important;
+    }
+
+    .market-option div:first-child {
+        font-size: 24px !important;
+    }
+
+    /* Stats and grids */
+    .stats-showcase,
+    .process-steps,
+    .icon-list {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .product-logos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .two-col-layout {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .founders-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .revenue-chart {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+    }
+
+    .revenue-bar {
+        max-width: 100%;
+    }
+
+    /* Typography */
+    .main-title {
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .slide-main-title {
+        font-size: 22px;
+    }
+
+    .slide-subtitle {
+        font-size: 14px;
+    }
+
+    .title-tagline {
+        font-size: 14px;
+    }
+
+    /* Cards and boxes */
+    .stat-card {
+        padding: 15px 12px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .stat-icon {
+        font-size: 28px;
+    }
+
+    .highlight-box {
+        padding: 15px;
+    }
+
+    .highlight-title {
+        font-size: 18px;
+    }
+
+    .highlight-content {
+        font-size: 13px;
+    }
+
+    .col-box {
+        padding: 15px;
+    }
+
+    .col-title {
+        font-size: 16px;
+    }
+
+    .col-content {
+        font-size: 13px;
+    }
+
+    .quote-text {
+        font-size: 16px;
+    }
+
+    .quote-box {
+        padding: 20px 15px;
+    }
+
+    .quote-box::before {
+        font-size: 50px;
+        left: 10px;
+    }
+
+    /* Navigation */
+    .nav-controls {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .slide-counter {
+        bottom: 15px;
+        left: 15px;
+        padding: 10px 15px;
+        font-size: 12px;
+        border-radius: 25px;
+    }
+
+    /* Header bar */
+    .slide-header-bar {
+        padding: 0 15px;
+        height: 60px;
+        padding-right: 70px;
+    }
+
+    .company-logo-img {
+        height: 35px;
+    }
+
+    .speaker-bubble {
+        width: 45px;
+        height: 45px;
+        right: 15px;
+    }
+
+    /* Title logos */
+    .title-logos {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .title-logo {
+        height: 50px;
+        padding: 10px 15px;
+    }
+
+    /* Process steps */
+    .process-step {
+        padding: 12px;
+    }
+
+    .process-number {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .process-text {
+        font-size: 13px;
+    }
+
+    .process-step::before {
+        display: none;
+    }
+
+    /* Icon list */
+    .icon-list-item {
+        padding: 12px 15px;
+    }
+
+    .icon-list-icon {
+        font-size: 20px;
+        min-width: 30px;
+    }
+
+    .icon-list-text {
+        font-size: 13px;
+    }
+
+    /* Products */
+    .product-logo-box {
+        padding: 12px;
+    }
+
+    .product-logo-box img {
+        height: 40px;
+    }
+
+    .product-logo-name {
+        font-size: 11px;
+    }
+
+    /* Founder cards */
+    .founder-image {
+        height: 200px;
+    }
+
+    .founder-info {
+        padding: 15px;
+    }
+
+    .founder-name {
+        font-size: 18px;
+    }
+
+    .founder-role {
+        font-size: 13px;
+    }
+
+    .founder-bio {
+        font-size: 12px;
+    }
+
+    /* Table */
+    .data-table th,
+    .data-table td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    /* Promo banner */
+    .promo-banner {
+        padding: 20px;
+    }
+
+    .promo-title {
+        font-size: 22px;
+    }
+
+    .promo-amount {
+        font-size: 28px;
+    }
+
+    .promo-details {
+        font-size: 14px;
+    }
+
+    /* Premium slides inline styles override */
+    [style*="padding: 50px 70px"],
+    [style*="padding: 40px 60px"],
+    [style*="padding: 35px 50px"] {
+        padding: 20px 15px !important;
+        padding-bottom: 100px !important;
+    }
+
+    [style*="font-size: 3.5em"],
+    [style*="font-size: 3em"] {
+        font-size: 1.8em !important;
+    }
+
+    [style*="font-size: 2.8em"],
+    [style*="font-size: 2.5em"],
+    [style*="font-size: 2.4em"],
+    [style*="font-size: 2.2em"] {
+        font-size: 1.4em !important;
+    }
+
+    [style*="font-size: 1.5em"],
+    [style*="font-size: 1.3em"] {
+        font-size: 1em !important;
+    }
+
+    /* Grid overrides for slides with inline styles */
+    [style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    [style*="grid-template-columns: repeat(5, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    [style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    /* Calculator slide specific fixes */
+    .calculator-premium-slide [style*="display: flex"][style*="gap: 25px"] {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    .calculator-premium-slide [style*="flex: 1"] {
+        flex: none !important;
+        width: 100% !important;
+    }
+
+    /* Smaller input on calculator */
+    #calcTotal {
+        width: 100px !important;
+        font-size: 28px !important;
+    }
+
+    /* Setup slide card */
+    .setup-slide [style*="max-width: 600px"] {
+        max-width: 100% !important;
+        padding: 25px 15px !important;
+    }
+
+    /* Presenter photo smaller on mobile */
+    #presenterPhotoPreview {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    /* Premium header bar smaller */
+    [style*="padding: 12px 30px"][style*="border-radius: 25px"] {
+        padding: 8px 15px !important;
+        font-size: 10px !important;
+    }
+
+    /* Reduce large font sizes in premium slides */
+    [style*="font-size: 4.5em"],
+    [style*="font-size: 4em"] {
+        font-size: 2em !important;
+    }
+
+    [style*="font-size: 52px"],
+    [style*="font-size: 48px"],
+    [style*="font-size: 44px"],
+    [style*="font-size: 42px"] {
+        font-size: 28px !important;
+    }
+
+    [style*="font-size: 38px"],
+    [style*="font-size: 36px"],
+    [style*="font-size: 34px"] {
+        font-size: 24px !important;
+    }
+
+    [style*="font-size: 26px"],
+    [style*="font-size: 24px"],
+    [style*="font-size: 22px"] {
+        font-size: 18px !important;
+    }
+
+    [style*="font-size: 20px"],
+    [style*="font-size: 18px"] {
+        font-size: 15px !important;
+    }
+
+    /* Rotating quote smaller */
+    #rotating-quote {
+        font-size: 16px !important;
+        padding: 15px !important;
+    }
+
+    /* Timer display smaller */
+    #timer-display {
+        font-size: 28px !important;
+    }
+
+    #countdown-timer {
+        padding: 12px 20px !important;
+    }
+
+    /* Gold accent lines narrower */
+    [style*="width: 120px"][style*="height: 4px"],
+    [style*="width: 100px"][style*="height: 4px"],
+    [style*="width: 80px"][style*="height: 3px"] {
+        width: 60px !important;
+    }
+
+    /* === AGGRESSIVE OVERRIDES FOR INLINE STYLES === */
+
+    /* Force all inline padding to be smaller */
+    div[style*="padding: 50px"],
+    div[style*="padding: 40px"],
+    div[style*="padding: 35px"],
+    div[style*="padding: 30px"] {
+        padding: 15px !important;
+    }
+
+    div[style*="padding: 25px"],
+    div[style*="padding: 20px"] {
+        padding: 12px !important;
+    }
+
+    /* Force margins to be smaller */
+    div[style*="margin-bottom: 35px"],
+    div[style*="margin-bottom: 30px"] {
+        margin-bottom: 15px !important;
+    }
+
+    div[style*="margin-bottom: 25px"],
+    div[style*="margin-bottom: 20px"] {
+        margin-bottom: 12px !important;
+    }
+
+    /* Force gap to be smaller */
+    div[style*="gap: 30px"],
+    div[style*="gap: 25px"],
+    div[style*="gap: 20px"] {
+        gap: 12px !important;
+    }
+
+    /* Force flex: 1 containers to be normal height */
+    div[style*="flex: 1"] {
+        flex: none !important;
+    }
+
+    /* Icon sizes smaller */
+    i[style*="font-size: 42px"],
+    i[style*="font-size: 40px"],
+    i[style*="font-size: 36px"],
+    i[style*="font-size: 32px"] {
+        font-size: 24px !important;
+    }
+
+    i[style*="font-size: 28px"],
+    i[style*="font-size: 26px"],
+    i[style*="font-size: 24px"] {
+        font-size: 20px !important;
+    }
+
+    /* Width constraints smaller */
+    div[style*="max-width: 1200px"],
+    div[style*="max-width: 1100px"],
+    div[style*="max-width: 1000px"] {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* Card border radius smaller */
+    div[style*="border-radius: 25px"],
+    div[style*="border-radius: 20px"] {
+        border-radius: 12px !important;
+    }
+
+    div[style*="border-radius: 18px"],
+    div[style*="border-radius: 15px"] {
+        border-radius: 10px !important;
+    }
+
+    /* Force letter-spacing smaller */
+    [style*="letter-spacing: 8px"],
+    [style*="letter-spacing: 5px"],
+    [style*="letter-spacing: 3px"] {
+        letter-spacing: 1px !important;
+    }
+
+    /* Force presenter photo smaller */
+    div[style*="width: 55px"][style*="height: 55px"],
+    img.presenter-photo {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    /* Force process step numbers smaller */
+    div[style*="width: 50px"][style*="height: 50px"][style*="border-radius: 50%"] {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 16px !important;
+    }
+
+    div[style*="width: 40px"][style*="height: 40px"][style*="border-radius: 50%"] {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 14px !important;
+    }
+
+    /* Line heights and text */
+    div[style*="line-height: 1.8"],
+    div[style*="line-height: 1.7"],
+    div[style*="line-height: 1.6"] {
+        line-height: 1.4 !important;
+    }
+
+    /* Stats grid force single column */
+    div[style*="display: grid"][style*="repeat(3, 1fr)"],
+    div[style*="display: grid"][style*="repeat(4, 1fr)"],
+    div[style*="display: grid"][style*="repeat(5, 1fr)"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+
+    /* Two column grids to single column */
+    div[style*="display: grid"][style*="1fr 1fr"]:not([style*="repeat"]) {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Background images contained */
+    img[style*="object-fit: cover"] {
+        object-position: center center !important;
+    }
+
+    /* Flex containers with wrap - force column on mobile */
+    div[style*="display: flex"][style*="flex-wrap: wrap"],
+    div[style*="display: flex"][style*="gap: 30px"] {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    /* Info cards with multiple items - stack vertically */
+    div[style*="justify-content: center"][style*="gap: 30px"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+
+    /* Qualification box smaller */
+    div[style*="max-width: 500px"] {
+        max-width: 100% !important;
+    }
+
+    div[style*="font-size: 48px"] {
+        font-size: 32px !important;
+    }
+
+    /* All large headings smaller */
+    [style*="font-size: 32px"],
+    [style*="font-size: 30px"] {
+        font-size: 22px !important;
+    }
+
+    [style*="font-size: 28px"] {
+        font-size: 20px !important;
+    }
+
+    /* Small text slightly smaller */
+    [style*="font-size: 17px"],
+    [style*="font-size: 16px"] {
+        font-size: 14px !important;
+    }
+
+    [style*="font-size: 15px"],
+    [style*="font-size: 14px"] {
+        font-size: 13px !important;
+    }
+
+    [style*="font-size: 13px"] {
+        font-size: 12px !important;
+    }
+
+    /* Force inline-block badges smaller */
+    div[style*="display: inline-block"][style*="padding: 10px 25px"] {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+    }
+
+    /* Ensure cards don't overflow */
+    div[style*="backdrop-filter: blur"] {
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    /* Fix horizontal flex items to stack */
+    div[style*="display: flex"][style*="justify-content: center"]:not([style*="flex-direction"]) {
+        flex-wrap: wrap !important;
+    }
+
+    /* Morocco slide title fix */
+    [style*="letter-spacing: 8px"] {
+        letter-spacing: 2px !important;
+        font-size: 1.5em !important;
+    }
+
+    /* Box shadows reduced for performance */
+    div[style*="box-shadow: 0 20px"],
+    div[style*="box-shadow: 0 15px"] {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    }
+
+    /* Force all spans with font sizes to be smaller */
+    span[style*="font-size: 26px"],
+    span[style*="font-size: 24px"] {
+        font-size: 18px !important;
+    }
+
+    /* Note text at bottom smaller */
+    div[style*="font-size: 14px"][style*="color: rgba(255,255,255,0.7)"] {
+        font-size: 11px !important;
+    }
+}
+
+/* === SUPER AGGRESSIVE MOBILE FIXES === */
+@media screen and (max-width: 768px) {
+    /* Force base font size smaller so em units scale down */
+    html {
+        font-size: 14px !important;
+    }
+
+    /* All slides - force smaller padding */
+    .slide > div[style*="padding"] {
+        padding: 15px !important;
+        padding-bottom: 80px !important;
+    }
+
+    /* Title slide main title */
+    div[style*="CRYPQUE"],
+    div[style*="font-size: 4.5em"],
+    div[style*="font-size: 4em"],
+    div[style*="font-size: 3.5em"] {
+        font-size: 1.6em !important;
+        letter-spacing: 2px !important;
+    }
+
+    /* All em-based fonts - force smaller */
+    [style*="font-size: 2.8em"],
+    [style*="font-size: 2.5em"],
+    [style*="font-size: 2.4em"],
+    [style*="font-size: 2.2em"],
+    [style*="font-size: 2em"],
+    [style*="font-size: 1.8em"] {
+        font-size: 1.2em !important;
+    }
+
+    [style*="font-size: 1.6em"],
+    [style*="font-size: 1.5em"],
+    [style*="font-size: 1.4em"],
+    [style*="font-size: 1.3em"] {
+        font-size: 1em !important;
+    }
+
+    [style*="font-size: 1.2em"],
+    [style*="font-size: 1.1em"] {
+        font-size: 0.95em !important;
+    }
+
+    /* Force ALL grids to 1 or 2 columns */
+    div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+
+    div[style*="grid-template-columns: 1fr 1fr"]:not([style*="repeat"]) {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Force all padding values smaller */
+    [style*="padding: 50px"],
+    [style*="padding: 45px"],
+    [style*="padding: 40px"],
+    [style*="padding: 35px"],
+    [style*="padding: 30px"] {
+        padding: 12px !important;
+    }
+
+    [style*="padding: 25px"],
+    [style*="padding: 20px"],
+    [style*="padding: 18px"] {
+        padding: 10px !important;
+    }
+
+    /* Force all margins smaller */
+    [style*="margin-bottom: 40px"],
+    [style*="margin-bottom: 35px"],
+    [style*="margin-bottom: 30px"] {
+        margin-bottom: 12px !important;
+    }
+
+    [style*="margin-bottom: 25px"],
+    [style*="margin-bottom: 20px"],
+    [style*="margin-bottom: 15px"] {
+        margin-bottom: 8px !important;
+    }
+
+    /* Force all gaps smaller */
+    [style*="gap: 30px"],
+    [style*="gap: 25px"],
+    [style*="gap: 20px"],
+    [style*="gap: 18px"],
+    [style*="gap: 15px"] {
+        gap: 8px !important;
+    }
+
+    /* Force header presenter photo */
+    div[style*="width: 55px"][style*="border-radius: 50%"],
+    div[style*="width: 50px"][style*="border-radius: 50%"],
+    div[style*="width: 45px"][style*="border-radius: 50%"],
+    div[style*="width: 40px"][style*="border-radius: 50%"] {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    /* Header badge smaller */
+    div[style*="padding: 12px 30px"][style*="border-radius"],
+    div[style*="padding: 10px 20px"][style*="border-radius"],
+    div[style*="padding: 8px 18px"][style*="border-radius"] {
+        padding: 6px 10px !important;
+    }
+
+    div[style*="padding: 8px 18px"] span,
+    div[style*="padding: 10px 20px"] span,
+    div[style*="padding: 12px 30px"] span {
+        font-size: 9px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    /* Step/process number circles */
+    div[style*="width: 50px"][style*="height: 50px"][style*="background: linear-gradient"],
+    div[style*="width: 40px"][style*="height: 40px"][style*="background: linear-gradient"],
+    div[style*="width: 36px"][style*="height: 36px"][style*="background: linear-gradient"] {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 12px !important;
+    }
+
+    /* Icons everywhere smaller */
+    i[style*="font-size"] {
+        font-size: 18px !important;
+    }
+
+    /* Card containers - prevent overflow */
+    div[style*="backdrop-filter"],
+    div[style*="background: linear-gradient"][style*="border-radius"] {
+        padding: 10px !important;
+        max-width: 100% !important;
+    }
+
+    /* Gold accent lines */
+    div[style*="height: 4px"][style*="background: linear-gradient"],
+    div[style*="height: 3px"][style*="background: linear-gradient"],
+    div[style*="height: 2px"][style*="background: linear-gradient"] {
+        width: 50px !important;
+        height: 2px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Quote box on slide 1 */
+    div[style*="max-width: 900px"] {
+        max-width: 100% !important;
+        padding: 15px !important;
+    }
+
+    #rotating-quote {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Timer */
+    #countdown-timer {
+        padding: 10px 15px !important;
+        gap: 10px !important;
+    }
+
+    #timer-display {
+        font-size: 24px !important;
+        letter-spacing: 2px !important;
+    }
+
+    /* Setup slide photo */
+    #presenterPhotoPreview {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    /* All text content smaller */
+    div[style*="font-size: 16px"],
+    div[style*="font-size: 15px"],
+    div[style*="font-size: 14px"],
+    span[style*="font-size: 16px"],
+    span[style*="font-size: 15px"],
+    span[style*="font-size: 14px"] {
+        font-size: 12px !important;
+    }
+
+    div[style*="font-size: 13px"],
+    div[style*="font-size: 12px"],
+    span[style*="font-size: 13px"],
+    span[style*="font-size: 12px"] {
+        font-size: 11px !important;
+    }
+
+    div[style*="font-size: 11px"],
+    div[style*="font-size: 10px"],
+    span[style*="font-size: 11px"],
+    span[style*="font-size: 10px"] {
+        font-size: 10px !important;
+    }
+
+    /* Force max-width containers to 100% */
+    div[style*="max-width: 1300px"],
+    div[style*="max-width: 1200px"],
+    div[style*="max-width: 1100px"],
+    div[style*="max-width: 1000px"],
+    div[style*="max-width: 900px"],
+    div[style*="max-width: 800px"],
+    div[style*="max-width: 600px"],
+    div[style*="max-width: 500px"],
+    div[style*="max-width: 400px"] {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* Slide 15 Morocco qualification box */
+    div[style*="font-size: 36px"] {
+        font-size: 24px !important;
+    }
+
+    /* Calculator slide */
+    .calculator-premium-slide div[style*="display: flex"][style*="align-items: stretch"] {
+        flex-direction: column !important;
+    }
+
+    .calculator-premium-slide div[style*="flex: 1"] {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    #calcTotal {
+        font-size: 24px !important;
+        width: 80px !important;
+    }
+
+    /* Force all border-radius smaller */
+    [style*="border-radius: 25px"],
+    [style*="border-radius: 20px"],
+    [style*="border-radius: 18px"] {
+        border-radius: 10px !important;
+    }
+
+    [style*="border-radius: 15px"],
+    [style*="border-radius: 12px"] {
+        border-radius: 8px !important;
+    }
+}
+
+/* Very small phones */
+@media screen and (max-width: 480px) {
+    .slide-content-wrapper {
+        padding: 15px 10px;
+        padding-bottom: 90px;
+    }
+
+    #marketSelector {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    .main-title {
+        font-size: 22px;
+    }
+
+    .slide-main-title {
+        font-size: 18px;
+    }
+
+    .stat-number {
+        font-size: 22px;
+    }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .slide-counter {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .slide {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .nav-controls {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .slide-counter {
+        bottom: 10px;
+        left: 10px;
+    }
+}
+
     </style>
 </head>
 <body>
