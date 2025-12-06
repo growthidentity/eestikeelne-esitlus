@@ -1,0 +1,421 @@
+<div class="slide waiting-slide">
+    <style>
+        .waiting-slide {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Subtle grid pattern background */
+        .waiting-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(79, 172, 254, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 172, 254, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        /* Main content container */
+        .waiting-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            padding: 0 100px;
+        }
+
+        /* Title */
+        .waiting-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5em;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 30px;
+            letter-spacing: 5px;
+        }
+
+        /* Subtitle */
+        .waiting-subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.8em;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+        }
+
+        /* Quote section */
+        .quote-section {
+            margin: 60px 0;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rotating-quote {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 4.4em;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+            line-height: 1.6;
+            width: 100%;
+            padding: 0 80px;
+            animation: fadeInOut 1s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .quote-marks {
+            color: rgba(79, 172, 254, 0.4);
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        /* Countdown section */
+        .countdown-section {
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .countdown-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.8em;
+            font-weight: 400;
+            color: rgba(79, 172, 254, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .countdown-timer {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10em;
+            font-weight: 300;
+            color: #4facfe;
+            letter-spacing: 15px;
+            text-shadow: 0 0 60px rgba(79, 172, 254, 0.6);
+        }
+
+        .countdown-timer.warning {
+            color: #ffa500;
+        }
+
+        .countdown-timer.urgent {
+            color: #ff4444;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Date display */
+        .date-display {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5em;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 3px;
+            margin-top: 50px;
+        }
+
+        /* Accent line */
+        .accent-line {
+            width: 70%;
+            height: 1px;
+            background: linear-gradient(to right,
+                transparent,
+                rgba(79, 172, 254, 0.3),
+                transparent);
+            margin: 40px auto;
+        }
+
+        /* Bottom section */
+        .waiting-footer {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.4em;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 8px 0;
+        }
+
+        .footer-highlight {
+            color: rgba(79, 172, 254, 0.8);
+            font-weight: 600;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .countdown-timer {
+                font-size: 6em;
+            }
+            .waiting-title {
+                font-size: 2.5em;
+            }
+            .rotating-quote {
+                font-size: 2.6em;
+            }
+        }
+    </style>
+
+    <!-- Main content -->
+    <div class="waiting-content">
+        <div class="waiting-title">Tere tulemast</div>
+        <div class="waiting-subtitle">Hetk veel… alustame peagi</div>
+
+        <div class="accent-line"></div>
+
+        <!-- Rotating quote -->
+        <div class="quote-section">
+            <div class="rotating-quote" id="quote-display">
+                <span class="quote-marks">"</span>
+                <span id="quote-text">Laeb...</span>
+                <span class="quote-marks">"</span>
+            </div>
+        </div>
+
+        <div class="accent-line"></div>
+
+        <!-- Countdown -->
+        <div class="countdown-section">
+            <div class="countdown-label">Algab</div>
+            <div class="countdown-timer" id="countdown-display">10:00</div>
+        </div>
+
+        <div class="date-display" id="date-display">-- -- ----</div>
+    </div>
+
+
+    <!-- Script -->
+    <script>
+        // ====== COUNTDOWN SETTINGS ======
+        const COUNTDOWN_MINUTES = 10;
+        const QUOTE_CHANGE_INTERVAL = 8000; // 8 seconds
+        // ================================
+
+        // 100 DIFFERENT QUOTES - Sarcastic, business-wise, motivational
+        const quotes = [
+            "Raha ei tee õnnelikuks... aga teeb väga mugavaks õnnetuks olemise.",
+            "Kõige kallim investeering on see, mida sa kunagi ei tee.",
+            "Kui plaan A ei tööta, siis õnneks on tähestikus veel 25 tähte.",
+            "Tahad kiirelt rikkaks saada? Mine magama, seal kõik juhtub kiiresti.",
+            "Edu on lihtne: vähem hala, rohkem tegusid.",
+            "Mul pole probleemi riskimisega, mul on probleem vaeseks jäämisega.",
+            "Inimesed tahavad stabiilsust... kuni tuleb jutt rahast.",
+            "Raha ei maga, ja sellepärast ka mina ei maga.",
+            "Tööta targemalt, mitte rohkem. Rohkem tööd teeb ainult väsinumaks.",
+            "Kõik tahavad vabadust, kuni keegi ütleb: tee midagi selle nimel.",
+            "Tark investeerib, loll kulutab, ja keskmine lihtsalt räägib.",
+            "Kui sul ei ole plaani, siis sa oled osa kellegi teise plaanist.",
+            "Kõige kallim lause: 'Ma teen homme.'",
+            "Kõik tahavad paremat elu, aga vähesed tahavad paremaid harjumusi.",
+            "Raha ei tee teid paremaks inimeseks. See lihtsalt võimendab seda, kes te nagunii olete.",
+            "Kui tahad teada, kes sind päriselt toetab, alusta äri.",
+            "Parim aeg investeerida oli eile. Teine parim aeg on täna.",
+            "Kui sa ei riski, siis sinu palk on sinu lagi.",
+            "Enamik inimesi ei ole laisad, neil on lihtsalt liiga mugav.",
+            "Kõigile meeldib rääkida rahast, kuni tuleb hetk seda liigutada.",
+            "Edu pole raske. Raske on järjepidev olla.",
+            "Kõik tahavad miljonär olla, aga mitte keegi ei taha mõelda kui miljonär.",
+            "Kes kardab riskida, riskib terve elu teise eest töötada.",
+            "Äri pole raske, inimesed teevad selle raskeks.",
+            "Kui tahad motivatsiooni, vaata pangakontot.",
+            "Tulemus = töö, mitte soov.",
+            "Kiire rikkaks saamine on lihtne, mine kasiinosse. Edu aga... see on teine teema.",
+            "Kui sul on vabandus, siis sul ei ole eesmärki.",
+            "Raha ei tee õnnelikuks, aga tee iseendale vähemalt lihtsaks.",
+            "Iga euro, mis ei tööta, läheb lihtsalt vanaemaga poodi.",
+            "Edu algab sealt, kus vabandused lõppevad.",
+            "Kui sa tahad midagi, mida sul kunagi pole olnud, tee midagi, mida sa pole kunagi teinud.",
+            "Ära oota ideaalset hetke. Ideaalne hetk sünnib siis, kui sa lõpuks alustad.",
+            "Säästmine on tore, aga investeerimine on seksikam.",
+            "Kui raha ei tule sinu juurde, siis sa jooksed vales suunas.",
+            "Warren Buffett ei saanud rikkaks, ostes iga päev cappuccinot.",
+            "Riski ei võta mitte hullud, riski võtavad targad.",
+            "Tee vähem lollusi ja sa oled juba rikkam kui eile.",
+            "Raha ei kasva puu otsas. Aga ta kasvab protsentides.",
+            "Kui eesmärk on suur, peab ka töö olema suur.",
+            "Tark õpib teistest. Rumal õpib ise. Ja superrumal ei õpi üldse.",
+            "Rääkimine ei tee rikkaks.",
+            "Plaani vähem, tegutse rohkem.",
+            "Kui sa ei hoolitse oma raha eest, hoolitseb keegi teine sinu arvelt.",
+            "Unistused on tasuta. Tegutsemine maksab.",
+            "Väike mõtlemine annab väikese elu.",
+            "Kui tahad midagi õigesti teha, alusta nüüd.",
+            "Uskumatu, kui palju inimesed kulutavad, et näida edukam kui nad on.",
+            "Raha ei ole probleem. Raha puudumine on.",
+            "Kui sul pole aega investeerida, sul ei ole aega olla vaba.",
+            "Kõige kallim on teadmatus.",
+            "Parem halb otsus kui otsustamatus.",
+            "Motivatsioon on ajutine. Distsipliin on igavene.",
+            "Kui sul pole eesmärki, siis su elul pole sihti.",
+            "Kõik, mida sa täna edasi lükkad, maksab homme rohkem.",
+            "Raha üksinda ei tee rikkaks. Mõistus teeb.",
+            "Ole inimene, kes paneb raha enda heaks tööle, mitte vastupidi.",
+            "Ära räägi, mida sa teed. Tee ja anna tulemustel rääkida.",
+            "Inimestel pole rahaprobleem... neil on valikute probleem.",
+            "Ära kurda, et elu on kallis. Kurda, et sissetulek on väike.",
+            "Edu on igav. See on kordamine, kordamine, kordamine.",
+            "Vähem draamat, rohkem numbreid.",
+            "Tahad teada, kui tõsiselt keegi raha võtab? Vaata, kuhu ta seda paneb.",
+            "Äri on lihtne: toota väärtust. Kõik muu on müra.",
+            "Kui keegi ütleb 'pole võimalik', tõlgendan seda: 'mina ei oska'.",
+            "Edu ei tule mugavustsoonist, aga pankrot küll.",
+            "Kõik mõtlevad suurelt... kuni tuleb töö.",
+            "Ära küsi, kui raske see on. Küsi, kas see on seda väärt.",
+            "Palgatöö on lahe, kuni saad aru, et see ei kuulu sulle.",
+            "Kui sa ei küsi, sa ei saa.",
+            "Enamik loobub enne kui üldse alustab.",
+            "Sina ei pea olema parim. Sa pead lihtsalt jätkama.",
+            "Harjumused vormivad su tuleviku.",
+            "Vaesus ei ole seisund. See on harjumus.",
+            "Õnne ei saa osta, aga vabadust saab.",
+            "Kõik tahavad edu. Vähesed tahavad selle eest maksta.",
+            "Elu on liiga lühike, et olla vaene.",
+            "Tööta nii, et tulevik tänab sind.",
+            "Ära oota motivatsiooni, tee lihtsalt esimene samm.",
+            "Kui risk tundub suur, mõtle riskile mitte midagi teha.",
+            "Ära ela rahast edasi. Pane raha edasi elama.",
+            "Raha pole kõige tähtsam. Aga ta on väga kasulik.",
+            "Suurim luksus on vabadus.",
+            "Sul ei ole vaja kõike teada. Sul on vaja alustada.",
+            "Kõige olulisem investeering on sinu peas.",
+            "Ära tee otsust hirmust. Tee otsus numbritest.",
+            "Kui sa pole piinlik, kui tagasi vaatad oma algusesse, siis sa alustasid hilja.",
+            "Raha ei tule negativistile.",
+            "Kui sa tahad rohkem, siis tee rohkem.",
+            "Inimesed kardavad riskida, aga ei karda vaesust.",
+            "Sinu tulevik sõltub sellest, mida sa täna teed.",
+            "Vaesus on kallim kui investeerimine.",
+            "Ära ela nädalavahetuse nimel.",
+            "Edu ei ole õnn. See on matemaatika.",
+            "Unistused töötavad ainult siis, kui sina töötad.",
+            "Kui sa teed, mida kõik teevad, saad seda, mida kõik saavad.",
+            "Tark ei küsi: 'Kas see toimib?' Tark küsib: 'Kuidas ma seda tööle panen?'",
+            "Kõik on võimalik... kui sa lõpuks teed midagi.",
+            "Kui sa tahad tulemusi, lõpeta vabandused.",
+            "Edukad ei ole erilised. Nad lihtsalt ei andnud alla."
+        ];
+
+        let lastQuoteIndex = -1;
+        let countdownSeconds = COUNTDOWN_MINUTES * 60;
+
+        function getRandomQuote() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * quotes.length);
+            } while (newIndex === lastQuoteIndex && quotes.length > 1);
+            lastQuoteIndex = newIndex;
+            return quotes[newIndex];
+        }
+
+        function adjustQuoteFontSize(text) {
+            const quoteDisplay = document.getElementById('quote-display');
+            const length = text.length;
+
+            // Adjust font size based on text length
+            let fontSize;
+            if (length < 50) {
+                fontSize = '4.4em';
+            } else if (length < 80) {
+                fontSize = '3.8em';
+            } else if (length < 110) {
+                fontSize = '3.2em';
+            } else if (length < 140) {
+                fontSize = '2.8em';
+            } else {
+                fontSize = '2.4em';
+            }
+
+            quoteDisplay.style.fontSize = fontSize;
+        }
+
+        function showNextQuote() {
+            const quoteText = document.getElementById('quote-text');
+            quoteText.style.opacity = '0';
+
+            setTimeout(() => {
+                const newQuote = getRandomQuote();
+                quoteText.textContent = newQuote;
+                adjustQuoteFontSize(newQuote);
+                quoteText.style.opacity = '1';
+            }, 500);
+        }
+
+        function updateDate() {
+            const now = new Date();
+            const days = ['Pühapäev', 'Esmaspäev', 'Teisipäev', 'Kolmapäev', 'Neljapäev', 'Reede', 'Laupäev'];
+            const months = ['jaanuar', 'veebruar', 'märts', 'aprill', 'mai', 'juuni',
+                          'juuli', 'august', 'september', 'oktoober', 'november', 'detsember'];
+
+            const dayName = days[now.getDay()];
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            document.getElementById('date-display').textContent =
+                `${dayName}, ${day}. ${month} ${year}`;
+        }
+
+        function updateCountdown() {
+            if (countdownSeconds <= 0) {
+                document.getElementById('countdown-display').textContent = 'ALGAB NÜÜD!';
+                document.getElementById('countdown-display').classList.add('urgent');
+                return;
+            }
+
+            const mins = Math.floor(countdownSeconds / 60);
+            const secs = countdownSeconds % 60;
+
+            document.getElementById('countdown-display').textContent =
+                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            const countdownEl = document.getElementById('countdown-display');
+            if (countdownSeconds < 180) {
+                countdownEl.classList.add('warning');
+            }
+            if (countdownSeconds < 60) {
+                countdownEl.classList.add('urgent');
+            }
+
+            countdownSeconds--;
+        }
+
+        // Initialize
+        const initialQuote = getRandomQuote();
+        document.getElementById('quote-text').textContent = initialQuote;
+        adjustQuoteFontSize(initialQuote);
+        updateDate();
+        updateCountdown();
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Rotate quotes
+        setInterval(showNextQuote, QUOTE_CHANGE_INTERVAL);
+    </script>
+</div>

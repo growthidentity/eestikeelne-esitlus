@@ -1,0 +1,188 @@
+<div class="slide active title-slide" style="position: relative; overflow: hidden;">
+    <!-- Background Image -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=95" alt="Crypto" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 8, 0.94) 0%, rgba(30, 25, 18, 0.90) 50%, rgba(15, 12, 8, 0.94) 100%);"></div>
+    </div>
+
+    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; color: white; text-align: center; padding: 60px;">
+
+        <!-- Top Gold Line -->
+        <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-bottom: 40px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
+
+        <!-- Main Title -->
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 4.5em; font-weight: 800; letter-spacing: 8px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); margin-bottom: 15px; background: linear-gradient(135deg, #ffffff, #f4d03f, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            CRYPQUE & MOBICRYP
+        </div>
+
+        <!-- Subtitle -->
+        <div style="font-family: 'Open Sans', sans-serif; font-size: 1.6em; font-weight: 300; color: rgba(255,255,255,0.9); letter-spacing: 4px; margin-bottom: 40px;">
+            Võimalus Võimendada Oma Raha Stabiilselt
+        </div>
+
+        <!-- Rotating Quote Box -->
+        <div style="background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)); backdrop-filter: blur(15px); border-radius: 20px; padding: 30px 50px; margin: 20px auto 35px; max-width: 900px; border: 1px solid rgba(244, 208, 63, 0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
+            <div id="rotating-quote" style="font-size: 24px; line-height: 1.6; color: rgba(255,255,255,0.95); text-align: center; font-style: italic; transition: opacity 0.5s;">
+                „Raha ei tee õnnelikuks… aga teeb väga mugavaks õnnetuks olemise."
+            </div>
+        </div>
+
+        <!-- Timer -->
+        <div id="countdown-timer" style="display: inline-flex; align-items: center; gap: 18px; background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(244, 208, 63, 0.1)); padding: 20px 40px; border-radius: 60px; backdrop-filter: blur(15px); border: 2px solid rgba(244, 208, 63, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <i class="fas fa-clock" style="font-size: 28px; color: #f4d03f;"></i>
+            <div style="font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 900; letter-spacing: 4px; color: #f4d03f;" id="timer-display">10:00</div>
+        </div>
+
+        <!-- Bottom Gold Line -->
+        <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-top: 40px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
+    </div>
+
+            <script>
+            // 100 Estonian quotes
+            const quotes = [
+                "Raha ei tee õnnelikuks… aga teeb väga mugavaks õnnetuks olemise.",
+                "Kõige kallim investeering on see, mida sa kunagi ei tee.",
+                "Kui plaan A ei tööta, siis õnneks on tähestikus veel 25 tähte.",
+                "Tahad kiirelt rikkaks saada? Mine magama, seal kõik juhtub kiiresti.",
+                "Edu on lihtne: vähem hala, rohkem tegusid.",
+                "Mul pole probleemi riskimisega, mul on probleem vaeseks jäämisega.",
+                "Inimesed tahavad stabiilsust… kuni tuleb jutt rahast.",
+                "Raha ei maga — ja sellepärast ka mina ei maga.",
+                "Tööta targemalt, mitte rohkem. Rohkem tööd teeb ainult väsinumaks.",
+                "Kõik tahavad vabadust, kuni keegi ütleb: tee midagi selle nimel.",
+                "Tark investeerib, loll kulutab — ja keskmine lihtsalt räägib.",
+                "Kui sul ei ole plaani, siis sa oled osa kellegi teise plaanist.",
+                "Kõige kallim lause: 'Ma teen homme.'",
+                "Kõik tahavad paremat elu, aga vähesed tahavad paremaid harjumusi.",
+                "Raha ei tee teid paremaks inimeseks — see lihtsalt võimendab seda, kes te nagunii olete.",
+                "Kui tahad teada, kes sind päriselt toetab, alusta äri.",
+                "Parim aeg investeerida oli eile. Teine parim aeg on täna.",
+                "Kui sa ei riski, siis sinu palk on sinu lagi.",
+                "Enamik inimesi ei ole laisad, neil on lihtsalt liiga mugav.",
+                "Kõigile meeldib rääkida rahast, kuni tuleb hetk seda liigutada.",
+                "Edu pole raske — raske on järjepidev olla.",
+                "Kõik tahavad miljonär olla, aga mitte keegi ei taha mõelda kui miljonär.",
+                "Kes kardab riskida, riskib terve elu teise eest töötada.",
+                "Äri pole raske, inimesed teevad selle raskeks.",
+                "Kui tahad motivatsiooni, vaata pangakontot.",
+                "Tulemus = töö, mitte soov.",
+                "Kiire rikkaks saamine on lihtne — mine kasiinosse. Edu aga… see on teine teema.",
+                "Kui sul on vabandus, siis sul ei ole eesmärki.",
+                "Raha ei tee õnnelikuks, aga tee iseendale vähemalt lihtsaks.",
+                "Iga euro, mis ei tööta, läheb lihtsalt vanaemaga poodi.",
+                "Edu algab sealt, kus vabandused lõppevad.",
+                "Kui sa tahad midagi, mida sul kunagi pole olnud, tee midagi, mida sa pole kunagi teinud.",
+                "Ära oota ideaalset hetke. Ideaalne hetk sünnib siis, kui sa lõpuks alustad.",
+                "Säästmine on tore, aga investeerimine on seksikam.",
+                "Kui raha ei tule sinu juurde, siis sa jooksed vales suunas.",
+                "Warren Buffett ei saanud rikkaks, ostes iga päev cappuccinot.",
+                "Riski ei võta mitte hullud, riski võtavad targad.",
+                "Tee vähem lollusi ja sa oled juba rikkam kui eile.",
+                "Raha ei kasva puu otsas. Aga ta kasvab protsentides.",
+                "Kui eesmärk on suur, peab ka töö olema suur.",
+                "Tark õpib teistest. Rumal õpib ise. Ja superrumal ei õpi üldse.",
+                "Rääkimine ei tee rikkaks.",
+                "Plaani vähem, tegutse rohkem.",
+                "Kui sa ei hoolitse oma raha eest, hoolitseb keegi teine — sinu arvelt.",
+                "Unistused on tasuta. Tegutsemine maksab.",
+                "Väike mõtlemine annab väikese elu.",
+                "Kui tahad midagi õigesti teha, alusta nüüd.",
+                "Uskumatu, kui palju inimesed kulutavad, et näida edukam kui nad on.",
+                "Raha ei ole probleem. Raha puudumine on.",
+                "Kui sul pole aega investeerida, sul ei ole aega olla vaba.",
+                "Kõige kallim on teadmatus.",
+                "Parem halb otsus kui otsustamatus.",
+                "Motivatsioon on ajutine. Distsipliin on igavene.",
+                "Kui sul pole eesmärki, siis su elul pole sihti.",
+                "Kõik, mida sa täna edasi lükkad, maksab homme rohkem.",
+                "Raha üksinda ei tee rikkaks — mõistus teeb.",
+                "Ole inimene, kes paneb raha enda heaks tööle, mitte vastupidi.",
+                "Ära räägi, mida sa teed. Tee ja anna tulemustel rääkida.",
+                "Inimestel pole rahaprobleem… neil on valikute probleem.",
+                "Ära kurda, et elu on kallis — kurda, et sissetulek on väike.",
+                "Edu on igav — see on kordamine, kordamine, kordamine.",
+                "Vähem draamat, rohkem numbreid.",
+                "Tahad teada, kui tõsiselt keegi raha võtab? Vaata, kuhu ta seda paneb.",
+                "Äri on lihtne: toota väärtust. Kõik muu on müra.",
+                "Kui keegi ütleb 'pole võimalik', tõlgendan seda: 'mina ei oska'.",
+                "Edu ei tule mugavustsoonist, aga pankrot küll.",
+                "Kõik mõtlevad suurelt… kuni tuleb töö.",
+                "Ära küsi, kui raske see on. Küsi, kas see on seda väärt.",
+                "Palgatöö on lahe, kuni saad aru, et see ei kuulu sulle.",
+                "Kui sa ei küsi, sa ei saa.",
+                "Enamik loobub enne kui üldse alustab.",
+                "Sina ei pea olema parim — sa pead lihtsalt jätkama.",
+                "Harjumused vormivad su tuleviku.",
+                "Vaesus ei ole seisund — see on harjumus.",
+                "Õnne ei saa osta, aga vabadust saab.",
+                "Kõik tahavad edu. Vähesed tahavad selle eest maksta.",
+                "Elu on liiga lühike, et olla vaene.",
+                "Tööta nii, et tulevik tänab sind.",
+                "Ära oota motivatsiooni, tee lihtsalt esimene samm.",
+                "Kui risk tundub suur, mõtle riskile mitte midagi teha.",
+                "Ära ela rahast edasi — pane raha edasi elama.",
+                "Raha pole kõige tähtsam. Aga ta on väga kasulik.",
+                "Suurim luksus on vabadus.",
+                "Sul ei ole vaja kõike teada. Sul on vaja alustada.",
+                "Kõige olulisem investeering on sinu peas.",
+                "Ära tee otsust hirmust. Tee otsus numbritest.",
+                "Kui sa pole piinlik, kui tagasi vaatad oma algusesse, siis sa alustasid hilja.",
+                "Raha ei tule negativistile.",
+                "Kui sa tahad rohkem, siis tee rohkem.",
+                "Inimesed kardavad riskida, aga ei karda vaesust.",
+                "Sinu tulevik sõltub sellest, mida sa täna teed.",
+                "Vaesus on kallim kui investeerimine.",
+                "Ära ela nädalavahetuse nimel.",
+                "Edu ei ole õnn — see on matemaatika.",
+                "Unistused töötavad ainult siis, kui sina töötad.",
+                "Kui sa teed, mida kõik teevad, saad seda, mida kõik saavad.",
+                "Tark ei küsi: 'Kas see toimib?' Tark küsib: 'Kuidas ma seda tööle panen?'",
+                "Kõik on võimalik… kui sa lõpuks teed midagi.",
+                "Kui sa tahad tulemusi, lõpeta vabandused.",
+                "Edukad ei ole erilised — nad lihtsalt ei andnud alla."
+            ];
+
+            // Shuffle quotes randomly
+            function shuffleArray(array) {
+                const shuffled = [...array];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled;
+            }
+
+            let shuffledQuotes = shuffleArray(quotes);
+            let currentQuoteIndex = 0;
+
+            // Rotate quotes every 6 seconds
+            setInterval(() => {
+                const quoteElement = document.getElementById('rotating-quote');
+                quoteElement.style.opacity = '0';
+
+                setTimeout(() => {
+                    currentQuoteIndex = (currentQuoteIndex + 1) % shuffledQuotes.length;
+                    quoteElement.textContent = `„${shuffledQuotes[currentQuoteIndex]}"`;
+                    quoteElement.style.opacity = '1';
+                }, 500);
+            }, 6000);
+
+            // 10 minute countdown timer
+            let timeLeft = 600; // 10 minutes in seconds
+
+            function updateTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer-display').textContent =
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    document.getElementById('timer-display').textContent = "0:00";
+                }
+            }
+
+            setInterval(updateTimer, 1000);
+            </script>
+        </div>

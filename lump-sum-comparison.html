@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lump Sum vs Dollar-Cost Averaging - Võrdlus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #0f0c08 0%, #1a1510 50%, #0f0c08 100%);
+            color: #fff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f4d03f 0%, #c9a227 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .strategy-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            border: 3px solid rgba(244, 208, 63, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .strategy-box.winner {
+            border-color: #10b981;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .strategy-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #f4d03f;
+            text-align: center;
+        }
+
+        .strategy-box.winner h2 {
+            color: #10b981;
+        }
+
+        .winner-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #0f0c08;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .metric {
+            background: rgba(244, 208, 63, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #f4d03f;
+        }
+
+        .strategy-box.winner .metric {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            color: #f4d03f;
+        }
+
+        .strategy-box.winner .metric-value {
+            color: #10b981;
+        }
+
+        .metric-value.highlight {
+            font-size: 2.5em;
+        }
+
+        .breakdown-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .breakdown-table th {
+            background: rgba(244, 208, 63, 0.2);
+            padding: 12px;
+            text-align: left;
+            font-size: 0.9em;
+            color: #f4d03f;
+        }
+
+        .breakdown-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9em;
+        }
+
+        .breakdown-table tr:hover {
+            background: rgba(244, 208, 63, 0.1);
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+            border: 3px solid #10b981;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .summary-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #10b981;
+        }
+
+        .insight {
+            background: linear-gradient(135deg, rgba(244, 208, 63, 0.15), rgba(201, 162, 39, 0.1));
+            border-left: 4px solid #f4d03f;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .insight h3 {
+            color: #f4d03f;
+            margin-bottom: 10px;
+        }
+
+        .risk-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 3px solid rgba(239, 68, 68, 0.5);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .risk-box h2 {
+            color: #ef4444;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background: linear-gradient(135deg, #c9a227, #f4d03f);
+            color: #0f0c08;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(201, 162, 39, 0.5);
+        }
+
+        @media (max-width: 968px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-balance-scale"></i> INVESTEERIMIS-STRATEEGIA VÕRDLUS</h1>
+        <div class="subtitle">Oktoober 2023 - Oktoober 2025 | Sama 10,000 EUR</div>
+
+        <div class="comparison-grid">
+            <!-- LUMP SUM -->
+            <div class="strategy-box">
+                <h2><i class="fas fa-box"></i> LUMP SUM</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">
+                    10,000 EUR korraga oktoobris 2023
+                </p>
+
+                <div class="metric">
+                    <div class="metric-label">Algne investeering</div>
+                    <div class="metric-value">€10,000</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Lõppväärtus (Okt 2025)</div>
+                    <div class="metric-value highlight">€25,632</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Puhaskasum</div>
+                    <div class="metric-value" style="color: #81c784;">+€15,632</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">ROI</div>
+                    <div class="metric-value" style="color: #c9a227;">+156%</div>
+                </div>
+
+                <table class="breakdown-table">
+                    <thead>
+                        <tr>
+                            <th>Vara</th>
+                            <th>Investeeritud</th>
+                            <th>Väärtus</th>
+                            <th>ROI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>BTC</strong></td>
+                            <td>€1,667</td>
+                            <td style="color: #f4d03f;">€5,138</td>
+                            <td style="color: #81c784;">+208%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ETH</strong></td>
+                            <td>€1,667</td>
+                            <td style="color: #f4d03f;">€3,867</td>
+                            <td style="color: #81c784;">+132%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>BNB</strong></td>
+                            <td>€1,667</td>
+                            <td style="color: #f4d03f;">€6,976</td>
+                            <td style="color: #81c784;">+318%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kuld</strong></td>
+                            <td>€1,667</td>
+                            <td style="color: #f4d03f;">€3,522</td>
+                            <td style="color: #81c784;">+111%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hõbe</strong></td>
+                            <td>€1,667</td>
+                            <td style="color: #f4d03f;">€3,494</td>
+                            <td style="color: #81c784;">+110%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>S&P 500</strong></td>
+                            <td>€1,667</td>
+                            <td style="color: #f4d03f;">€2,635</td>
+                            <td style="color: #81c784;">+58%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DOLLAR-COST AVERAGING -->
+            <div class="strategy-box winner">
+                <div style="text-align: center;">
+                    <span class="winner-badge"><i class="fas fa-trophy"></i> PARIM TULEMUS</span>
+                </div>
+                <h2><i class="fas fa-chart-line"></i> DOLLAR-COST AVERAGING</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">
+                    1,000 EUR igakuiselt 25 kuud (lepingu tootlus)
+                </p>
+
+                <div class="metric">
+                    <div class="metric-label">Algne investeering (lepingusse)</div>
+                    <div class="metric-value">€10,000</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Lõppväärtus (Okt 2025)</div>
+                    <div class="metric-value highlight">€37,141</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">Puhaskasum</div>
+                    <div class="metric-value" style="color: #81c784;">+€27,141</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-label">ROI</div>
+                    <div class="metric-value" style="color: #c9a227;">+271%</div>
+                </div>
+
+                <table class="breakdown-table">
+                    <thead>
+                        <tr>
+                            <th>Vara</th>
+                            <th>Investeeritud</th>
+                            <th>Väärtus</th>
+                            <th>ROI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>BTC</strong></td>
+                            <td>€4,167</td>
+                            <td style="color: #f4d03f;">€6,425</td>
+                            <td style="color: #81c784;">+54%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ETH</strong></td>
+                            <td>€4,167</td>
+                            <td style="color: #f4d03f;">€5,407</td>
+                            <td style="color: #81c784;">+30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>BNB</strong></td>
+                            <td>€4,167</td>
+                            <td style="color: #f4d03f;">€7,414</td>
+                            <td style="color: #81c784;">+78%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kuld</strong></td>
+                            <td>€4,167</td>
+                            <td style="color: #f4d03f;">€6,330</td>
+                            <td style="color: #81c784;">+52%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hõbe</strong></td>
+                            <td>€4,167</td>
+                            <td style="color: #f4d03f;">€6,467</td>
+                            <td style="color: #81c784;">+55%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>S&P 500</strong></td>
+                            <td>€4,167</td>
+                            <td style="color: #f4d03f;">€5,098</td>
+                            <td style="color: #81c784;">+22%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary-box">
+            <h2><i class="fas fa-chart-pie"></i> KOKKUVÕTE</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px;">
+                <div>
+                    <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-bottom: 10px;">DCA Eelis</div>
+                    <div style="font-size: 3em; font-weight: 900; color: #10b981;">+45%</div>
+                    <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-top: 10px;">Parem tulemus</div>
+                </div>
+                <div>
+                    <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-bottom: 10px;">DCA Lisakasum</div>
+                    <div style="font-size: 3em; font-weight: 900; color: #81c784;">+€11,509</div>
+                    <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-top: 10px;">Rohkem kasumit</div>
+                </div>
+                <div>
+                    <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-bottom: 10px;">Sama Algkapital</div>
+                    <div style="font-size: 3em; font-weight: 900; color: #f4d03f;">€10,000</div>
+                    <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-top: 10px;">Mõlemal juhul</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INSIGHTS -->
+        <div class="insight">
+            <h3><i class="fas fa-lightbulb"></i> Miks DCA Võitis?</h3>
+            <ul style="line-height: 2; padding-left: 20px; margin-top: 15px;">
+                <li><strong>Rohkem kapitali:</strong> DCA kasutas lepingu tootlust (25,000 EUR varadesse) vs Lump Sum (ainult 10,000 EUR)</li>
+                <li><strong>Keskmine hind:</strong> DCA ostis nii kõrgete kui madalate hindade ajal, vältides "tippu ostmist"</li>
+                <li><strong>Lepingu jõud:</strong> 10% igakuine tootlus lepingust andis pidev voogud investeerimiseks</li>
+                <li><strong>Volatiilsuse eelis:</strong> Kripto langusfaasides 2024-2025 sai DCA osta odavamalt</li>
+            </ul>
+        </div>
+
+        <div class="insight">
+            <h3><i class="fas fa-chart-line"></i> Lump Sum Eelised</h3>
+            <ul style="line-height: 2; padding-left: 20px; margin-top: 15px;">
+                <li><strong>Lihtsus:</strong> Üks otsus, üks tehing, valmis</li>
+                <li><strong>Madalam kogusumma:</strong> Investeeris ainult 10,000 EUR (vs 10k + 25k tootlust DCA puhul)</li>
+                <li><strong>156% ROI:</strong> Ikka suurepärane tulemus algkapitali pealt!</li>
+                <li><strong>Sobiv "lump sum" olukordadeks:</strong> Kui sul on kohe 10k vaba raha</li>
+            </ul>
+        </div>
+
+        <!-- MARKET TIMING RISK -->
+        <div class="risk-box">
+            <h2><i class="fas fa-exclamation-triangle"></i> LUMP SUM RISK: MARKET TIMING</h2>
+
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; color: #fca5a5;">
+                Lump Sum tulemus sõltub VÄGA palju sellest, MILLAL sa ostad!
+            </p>
+
+            <table class="breakdown-table">
+                <thead>
+                    <tr>
+                        <th>Ostukuupäev</th>
+                        <th>BTC Hind</th>
+                        <th>Lõppväärtus (Okt 2025)</th>
+                        <th>ROI</th>
+                        <th>Stsenaarium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(16, 185, 129, 0.1);">
+                        <td><strong>Okt 2023</strong></td>
+                        <td>$34,387</td>
+                        <td style="color: #f4d03f; font-weight: 600;">€25,632</td>
+                        <td style="color: #81c784; font-weight: 600;">+156%</td>
+                        <td style="color: #10b981;">✅ Hea timing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Märts 2024</strong></td>
+                        <td>$71,305</td>
+                        <td style="color: #f4d03f; font-weight: 600;">€16,847</td>
+                        <td style="color: #f4d03f; font-weight: 600;">+68%</td>
+                        <td style="color: #f4d03f;">⚠️ Keskmine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov 2024</strong></td>
+                        <td>$96,449</td>
+                        <td style="color: #f4d03f; font-weight: 600;">€13,254</td>
+                        <td style="color: #f4d03f; font-weight: 600;">+33%</td>
+                        <td style="color: #f4d03f;">⚠️ Hiline sisseminek</td>
+                    </tr>
+                    <tr style="background: rgba(239, 68, 68, 0.15);">
+                        <td><strong>Aug 2025</strong></td>
+                        <td>$118,000</td>
+                        <td style="color: #ef4444; font-weight: 600;">€9,145</td>
+                        <td style="color: #ef4444; font-weight: 600;">-8.6%</td>
+                        <td style="color: #ef4444;">❌ Ostsid tipus!</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; padding: 20px; background: rgba(239, 68, 68, 0.2); border-radius: 10px;">
+                <h4 style="color: #ef4444; margin-bottom: 15px;">
+                    <i class="fas fa-chart-line"></i> Näide: Ostsid Augusti 2025 Tipus
+                </h4>
+                <p style="line-height: 1.8;">
+                    Kui oleksid pannud €10,000 augustis 2025 (kui BTC oli $118k, tipus), oleks sul 2 kuud hiljem
+                    <strong style="color: #ef4444;">KAHJUM -€855 (-8.6%)</strong>
+                </p>
+                <p style="line-height: 1.8; margin-top: 15px;">
+                    DCA strateegiaga oleksid juba 25 kuud investeerinud ja sinu keskmine ostuhind oleks olnud
+                    palju madalam - sa ei oleks kunagi "ostnud tipus"!
+                </p>
+            </div>
+        </div>
+
+        <div class="insight" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.1);">
+            <h3 style="color: #10b981;"><i class="fas fa-trophy"></i> Järeldus</h3>
+            <p style="line-height: 1.8; font-size: 1.1em; margin-top: 15px;">
+                <strong>Dollar-Cost Averaging kombineerituna lepingu tootlusega</strong> annab paremad tulemused kui ühekordne investeering.
+                Algkapital €10,000 kasvas <strong>€37,141-ni (+271%)</strong> DCA puhul vs <strong>€25,632 (+156%)</strong> Lump Sum puhul.
+            </p>
+            <p style="line-height: 1.8; font-size: 1.1em; margin-top: 15px; color: #10b981;">
+                <i class="fas fa-lightbulb"></i> <strong>Parim strateegia:</strong> Kasuta lepingut, et genereerida regulaarset tulu, ja investeeri see tulu järjekindlalt varadesse!
+            </p>
+            <p style="line-height: 1.8; font-size: 1.1em; margin-top: 15px; color: #f4d03f;">
+                <i class="fas fa-exclamation-triangle"></i> <strong>DCA eelised:</strong> Ei pea muretsema "õige aja" pärast. Ostad automaatselt nii kõrgetel kui madalaatel hindadel, mis vähendab market timing riski!
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="wealth-multiplier-analysis.html" class="btn-gold">
+                <i class="fas fa-arrow-left"></i> Tagasi Interaktiivsele Kalkulaatorile
+            </a>
+        </div>
+    </div>
+</body>
+</html>

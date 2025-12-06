@@ -1,0 +1,185 @@
+<div class="slide premium-slide" style="position: relative; overflow: hidden;">
+    <!-- Background Image -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+        <img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=1920&q=95" alt="Money Growth" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 8, 0.94) 0%, rgba(30, 25, 18, 0.90) 50%, rgba(15, 12, 8, 0.94) 100%);"></div>
+    </div>
+
+    <!-- Content -->
+    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; padding: 40px 60px;">
+
+        <!-- Premium Header Bar -->
+        <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div style="background: linear-gradient(135deg, rgba(201, 162, 39, 0.3), rgba(244, 208, 63, 0.2)); padding: 12px 30px; border-radius: 25px; border: 1px solid rgba(244, 208, 63, 0.5);">
+                    <span style="color: #f4d03f; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 2px;">RAHA VÕIMENDAMINE</span>
+                </div>
+                <div style="width: 55px; height: 55px; border-radius: 50%; overflow: hidden; border: 3px solid #f4d03f; box-shadow: 0 5px 20px rgba(244, 208, 63, 0.4);">
+                    <img class="presenter-photo" src="LOGOS/Vambola Tullus.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Esineja">
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1200px; margin: 0 auto; width: 100%;">
+
+            <!-- Gold Accent Line -->
+            <div style="width: 80px; height: 3px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-bottom: 15px; border-radius: 2px; box-shadow: 0 2px 10px rgba(201, 162, 39, 0.5);"></div>
+
+            <!-- Title -->
+            <div style="font-family: 'Montserrat', sans-serif; font-size: 2.4em; font-weight: 700; color: white; margin-bottom: 5px; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                <i class="fas fa-rocket" style="color: #f4d03f; margin-right: 15px;"></i>Raha Võimendamise Mõtteviis
+            </div>
+            <div style="font-family: 'Open Sans', sans-serif; font-size: 1.2em; font-weight: 300; color: rgba(255,255,255,0.8); margin-bottom: 20px; letter-spacing: 1px;">
+                Kui sul on <span id="leverageAmount" style="color: #f4d03f; font-weight: 700;">10,000€</span> - Mida sa teed?
+            </div>
+
+            <!-- Two Column Comparison -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 20px;">
+                <!-- Left - Bad Way -->
+                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05)); backdrop-filter: blur(15px); border-radius: 20px; padding: 25px; border: 2px solid rgba(239, 68, 68, 0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <i class="fas fa-times-circle" style="font-size: 26px; color: #ef4444;"></i>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 1.2em; font-weight: 600; color: #ef4444;">Tavaline Tee</span>
+                    </div>
+                    <div style="color: rgba(255,255,255,0.95); font-size: 15px; line-height: 1.7;">
+                        <div style="font-size: 17px; font-weight: 600; color: #ef4444; margin-bottom: 12px;">Sul on: <span id="badWayAmount">10,000€</span></div>
+                        <div style="margin-bottom: 6px;">→ Tarbid <span id="badWayMonthly">1,000€</span> kuus</div>
+                        <div style="margin-bottom: 6px;">→ <span id="badWayMonths">10</span> kuu pärast</div>
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 2.2em; font-weight: 900; color: #ef4444; margin: 12px 0;">0€ alles</div>
+                        <div style="opacity: 0.7; font-size: 13px;">Raha on kadunud igaveseks.</div>
+                    </div>
+                </div>
+
+                <!-- Right - Good Way -->
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05)); backdrop-filter: blur(15px); border-radius: 20px; padding: 25px; border: 2px solid rgba(16, 185, 129, 0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <i class="fas fa-check-circle" style="font-size: 26px; color: #10b981;"></i>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 1.2em; font-weight: 600; color: #10b981;">Võimendamise Tee</span>
+                    </div>
+                    <div style="color: rgba(255,255,255,0.95); font-size: 14px; line-height: 1.5;">
+                        <div style="font-size: 17px; font-weight: 600; color: #10b981; margin-bottom: 10px;">Sul on: <span id="goodWayAmount">10,000€</span></div>
+                        <div style="font-size: 14px; color: #3b82f6; font-weight: 600; margin-bottom: 10px;">Paned lepingusse kasvama</div>
+                        <div style="background: rgba(16, 185, 129, 0.2); padding: 7px 10px; border-radius: 8px; margin-bottom: 6px; border-left: 3px solid #10b981;">
+                            <strong style="color: #10b981;">INVESTEERING:</strong> <span id="goodWayInvest">10,000€</span>
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.2); padding: 7px 10px; border-radius: 8px; margin-bottom: 6px; border-left: 3px solid #3b82f6;">
+                            <strong style="color: #3b82f6;">VÄLJAMAKSE:</strong> <span id="goodWayMonthlyProfit">566€</span>/kuu (neto)
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.2); padding: 7px 10px; border-radius: 8px; margin-bottom: 6px; border-left: 3px solid #f59e0b;">
+                            <strong style="color: #f59e0b;">25 KUUD:</strong> <span id="goodWay25months">25,000€</span>
+                        </div>
+                        <div style="margin-top: 8px;">PUHAS KASUM: <strong style="font-size: 18px; color: #10b981;" id="goodWayNetProfit">15,000€</strong></div>
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 1.3em; font-weight: 700; color: #10b981; margin-top: 3px;">Kokku: <span id="goodWayTotal">25,000€</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight Box -->
+            <div style="background: linear-gradient(135deg, rgba(201, 162, 39, 0.15), rgba(244, 208, 63, 0.08)); backdrop-filter: blur(15px); border-radius: 15px; padding: 15px 25px; border: 1px solid rgba(244, 208, 63, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
+                <div style="display: flex; align-items: center; gap: 12px; justify-content: center; margin-bottom: 8px;">
+                    <i class="fas fa-sync-alt" style="font-size: 18px; color: #f4d03f;"></i>
+                    <span style="font-family: 'Montserrat', sans-serif; font-size: 1em; font-weight: 600; color: #f4d03f;">Kasumit Saab Suunata Edasi:</span>
+                </div>
+                <div style="font-size: 15px; color: rgba(255,255,255,0.95); margin-bottom: 6px;">
+                    <span style="margin: 0 10px;"><i class="fab fa-bitcoin" style="color: #f7931a; margin-right: 5px;"></i><strong>Krüpto</strong></span>
+                    <span style="margin: 0 10px;"><i class="fas fa-coins" style="color: #ffd700; margin-right: 5px;"></i><strong>Kuld & Hõbe</strong></span>
+                    <span style="margin: 0 10px;"><i class="fas fa-chart-line" style="color: #10b981; margin-right: 5px;"></i><strong>Aktsiad</strong></span>
+                    <span style="margin: 0 10px;"><i class="fas fa-home" style="color: #3b82f6; margin-right: 5px;"></i><strong>Kinnisvara</strong></span>
+                </div>
+                <div style="font-size: 15px; font-weight: 700; color: #f4d03f;">Raha töötab sinu eest, mitte sina raha eest!</div>
+            </div>
+
+            <!-- Interactive Analysis Link -->
+            <div style="text-align: center; margin-top: 15px;">
+                <a id="analysisLink" href="wealth-multiplier-analysis.html?amount=7800" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #c9a227, #f4d03f); color: #0f0c08; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: 700; box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4); transition: all 0.3s;">
+                    <i class="fas fa-chart-line" style="margin-right: 10px;"></i>
+                    Vaata Detailset 25-Kuu Analüüsi (Reaalajas Hinnad)
+                    <i class="fas fa-external-link-alt" style="margin-left: 10px; font-size: 11px;"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Gold Line -->
+        <div style="width: 80px; height: 3px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin: 15px auto 0; border-radius: 2px; box-shadow: 0 2px 10px rgba(201, 162, 39, 0.5);"></div>
+    </div>
+
+    <script>
+    // See funktsioon uuendab raha võimendamise slaidi kalkulaatori väärtuse põhjal
+    function updateLeverageSlide() {
+        // Proovi saada kalkulaatori väärtust
+        const calcInput = document.getElementById('calcTotal');
+        let totalInvestment = 7800; // Vaikeväärtus dollarites
+
+        if (calcInput && calcInput.value) {
+            totalInvestment = parseFloat(calcInput.value);
+        }
+
+        // Teisenda eurodesse (ligikaudu)
+        const eurRate = 0.86;
+        const totalEur = Math.round(totalInvestment * eurRate);
+
+        // Arvuta nagu kalkulaatoris: Hub ~12.82%, kapital teenib 2.5x
+        const hub = totalInvestment * 0.1282;
+        const kapital = totalInvestment - hub;
+        const brutoTagastus = kapital * 2.5;
+        const withdrawalFee = brutoTagastus * 0.03 + 25; // 3% + 25 väljamakset × $1
+        const netoTagastus = brutoTagastus - withdrawalFee;
+
+        const monthlyProfit = Math.round((netoTagastus / 25) * eurRate); // Neto kuus
+        const total25months = Math.round(netoTagastus * eurRate); // Neto tagastus eurodes
+        const netProfit = total25months - totalEur;
+        const monthsToSpend = Math.ceil(totalEur / 1000); // Kui kulutad 1000€/kuu
+
+        // Formaadi numbrid
+        const fmt = (n) => n.toLocaleString('et-EE');
+
+        // Uuenda elemente
+        const leverageAmount = document.getElementById('leverageAmount');
+        if (leverageAmount) leverageAmount.textContent = fmt(totalEur) + '€';
+
+        const badWayAmount = document.getElementById('badWayAmount');
+        if (badWayAmount) badWayAmount.textContent = fmt(totalEur) + '€';
+
+        const badWayMonthly = document.getElementById('badWayMonthly');
+        if (badWayMonthly) badWayMonthly.textContent = fmt(Math.round(totalEur / 10)) + '€';
+
+        const badWayMonths = document.getElementById('badWayMonths');
+        if (badWayMonths) badWayMonths.textContent = '10';
+
+        const goodWayAmount = document.getElementById('goodWayAmount');
+        if (goodWayAmount) goodWayAmount.textContent = fmt(totalEur) + '€';
+
+        const goodWayInvest = document.getElementById('goodWayInvest');
+        if (goodWayInvest) goodWayInvest.textContent = fmt(totalEur) + '€';
+
+        const goodWayMonthlyProfit = document.getElementById('goodWayMonthlyProfit');
+        if (goodWayMonthlyProfit) goodWayMonthlyProfit.textContent = fmt(monthlyProfit) + '€';
+
+        const goodWay25months = document.getElementById('goodWay25months');
+        if (goodWay25months) goodWay25months.textContent = fmt(total25months) + '€';
+
+        const goodWayNetProfit = document.getElementById('goodWayNetProfit');
+        if (goodWayNetProfit) goodWayNetProfit.textContent = fmt(netProfit) + '€';
+
+        const goodWayTotal = document.getElementById('goodWayTotal');
+        if (goodWayTotal) goodWayTotal.textContent = fmt(total25months) + '€';
+
+        // Uuenda analüüsi linki summaga
+        const analysisLink = document.getElementById('analysisLink');
+        if (analysisLink) analysisLink.href = 'wealth-multiplier-analysis.html?amount=' + totalInvestment;
+    }
+
+    // Käivita kui slaid laetakse
+    document.addEventListener('DOMContentLoaded', function() {
+        updateLeverageSlide();
+    });
+
+    // Kuula kalkulaatori muudatusi
+    const calcTotal = document.getElementById('calcTotal');
+    if (calcTotal) {
+        calcTotal.addEventListener('input', updateLeverageSlide);
+        calcTotal.addEventListener('change', updateLeverageSlide);
+    }
+    </script>
+</div>

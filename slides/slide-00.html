@@ -1,0 +1,274 @@
+<div class="slide setup-slide" style="position: relative; overflow: hidden;">
+    <!-- Background -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=95" alt="Setup" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 8, 0.96) 0%, rgba(30, 25, 18, 0.94) 50%, rgba(15, 12, 8, 0.96) 100%);"></div>
+    </div>
+
+    <!-- Content -->
+    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; padding: 60px;">
+
+        <!-- Gold Line -->
+        <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-bottom: 30px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
+
+        <!-- Title -->
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 2.5em; font-weight: 700; color: white; text-align: center; margin-bottom: 10px; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+            <i class="fas fa-user-circle" style="color: #f4d03f; margin-right: 15px;"></i>Esineja Seadistamine
+        </div>
+        <div style="font-family: 'Open Sans', sans-serif; font-size: 1.2em; color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 40px;">
+            Lisa oma foto, mis kuvatakse kogu esitluse jooksul
+        </div>
+
+        <!-- Setup Card -->
+        <div style="background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); backdrop-filter: blur(20px); border-radius: 25px; padding: 50px; border: 2px solid rgba(244, 208, 63, 0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4); max-width: 600px; width: 100%;">
+
+            <!-- Photo Preview -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div id="presenterPhotoPreview" style="width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 20px; border: 4px solid #f4d03f; box-shadow: 0 10px 40px rgba(244, 208, 63, 0.3); overflow: hidden; background: linear-gradient(135deg, rgba(201, 162, 39, 0.3), rgba(244, 208, 63, 0.2)); display: flex; align-items: center; justify-content: center;">
+                    <img id="presenterPhotoImg" src="LOGOS/Vambola Tullus.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="Esineja">
+                </div>
+                <div id="presenterName" style="font-family: 'Montserrat', sans-serif; font-size: 1.3em; font-weight: 600; color: #f4d03f; margin-bottom: 5px;">Vambola Tullus</div>
+                <div style="font-size: 0.9em; color: rgba(255,255,255,0.6);">Praegune esineja</div>
+            </div>
+
+            <!-- Upload Section -->
+            <div style="text-align: center;">
+                <label for="presenterPhotoInput" style="display: inline-block; background: linear-gradient(135deg, #c9a227, #f4d03f); color: #0f0c08; padding: 15px 40px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1em; cursor: pointer; box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4); transition: all 0.3s; border: none;">
+                    <i class="fas fa-camera" style="margin-right: 10px;"></i>Vali Uus Foto
+                </label>
+                <input type="file" id="presenterPhotoInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+
+                <!-- Confirmation Button (appears after upload) -->
+                <div id="confirmSection" style="display: none; margin-top: 20px;">
+                    <button onclick="confirmPhoto()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 12px 30px; border-radius: 30px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95em; cursor: pointer; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); border: none;">
+                        <i class="fas fa-check" style="margin-right: 8px;"></i>Kinnita Foto
+                    </button>
+                </div>
+
+                <!-- Status Message -->
+                <div id="statusMessage" style="margin-top: 15px; font-size: 0.9em; color: #10b981; display: none;">
+                    <i class="fas fa-check-circle" style="margin-right: 5px;"></i>
+                    <span id="statusText">Foto uuendatud!</span>
+                </div>
+
+                <div style="margin-top: 15px; font-size: 0.85em; color: rgba(255,255,255,0.5);">
+                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i>Soovitav: ruudukujuline foto (min 200x200px)
+                </div>
+            </div>
+
+            <!-- Name Input -->
+            <div style="margin-top: 30px; padding-top: 25px; border-top: 1px solid rgba(244, 208, 63, 0.2);">
+                <label style="display: block; font-size: 0.9em; color: rgba(255,255,255,0.7); margin-bottom: 10px;">
+                    <i class="fas fa-user" style="margin-right: 8px; color: #f4d03f;"></i>Esineja Nimi
+                </label>
+                <input type="text" id="presenterNameInput" placeholder="Sinu nimi" value="Vambola Tullus" style="width: 100%; padding: 15px 20px; border-radius: 15px; border: 2px solid rgba(244, 208, 63, 0.3); background: rgba(255,255,255,0.05); color: white; font-size: 1.1em; font-family: 'Open Sans', sans-serif; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#f4d03f'" onblur="this.style.borderColor='rgba(244, 208, 63, 0.3)'" oninput="updatePresenterName()">
+            </div>
+
+            <!-- Preset Photos -->
+            <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(244, 208, 63, 0.2);">
+                <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-bottom: 15px; text-align: center;">
+                    <i class="fas fa-users" style="margin-right: 8px; color: #f4d03f;"></i>Või vali olemasolev esineja:
+                </div>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <div onclick="selectPresetPresenter('LOGOS/Vambola Tullus.jpg', 'Vambola Tullus')" style="cursor: pointer; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="LOGOS/Vambola Tullus.jpg" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(244, 208, 63, 0.5); object-fit: cover;">
+                        <div style="font-size: 0.7em; color: rgba(255,255,255,0.6); margin-top: 5px;">Vambola</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Button -->
+        <div style="margin-top: 40px;">
+            <button onclick="startPresentation()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px 60px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.3em; cursor: pointer; box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4); border: none; transition: all 0.3s;">
+                <i class="fas fa-play" style="margin-right: 15px;"></i>Alusta Esitlust
+            </button>
+        </div>
+
+        <!-- Skip Link -->
+        <div style="margin-top: 20px;">
+            <a href="javascript:void(0)" onclick="skipSetup()" style="color: rgba(255,255,255,0.5); font-size: 0.9em; text-decoration: none;">
+                <i class="fas fa-forward" style="margin-right: 5px;"></i>Jäta vahele (kasuta vaikeväärtusi)
+            </a>
+        </div>
+
+        <!-- Bottom Gold Line -->
+        <div style="width: 80px; height: 3px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-top: 30px; border-radius: 2px; box-shadow: 0 2px 10px rgba(201, 162, 39, 0.5);"></div>
+    </div>
+
+    <script>
+    // Lae salvestatud foto localStorage-ist
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedPhoto = localStorage.getItem('presenterPhoto');
+        const savedName = localStorage.getItem('presenterName');
+
+        if (savedPhoto) {
+            document.getElementById('presenterPhotoImg').src = savedPhoto;
+        }
+        if (savedName) {
+            document.getElementById('presenterName').textContent = savedName;
+            document.getElementById('presenterNameInput').value = savedName;
+        }
+    });
+
+    // Ajutine foto andmed
+    let pendingPhotoData = null;
+
+    // Vähenda pildi suurust (compress)
+    function compressImage(file, maxWidth, maxHeight, quality) {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    // Arvuta uus suurus, säilitades proportsiooni
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width = Math.round((width * maxHeight) / height);
+                            height = maxHeight;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Tagasta kompresseeritud pilt
+                    resolve(canvas.toDataURL('image/jpeg', quality));
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // Käitle foto üleslaadimist
+    async function handlePhotoUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            // Näita laadimise teadet
+            document.getElementById('statusMessage').style.display = 'block';
+            document.getElementById('statusText').textContent = 'Töötlen pilti...';
+            document.getElementById('statusMessage').style.color = '#f4d03f';
+
+            try {
+                // Kompresseeri pilt (max 400x400, 80% kvaliteet)
+                pendingPhotoData = await compressImage(file, 400, 400, 0.8);
+
+                document.getElementById('presenterPhotoImg').src = pendingPhotoData;
+                // Näita kinnitamise nuppu
+                document.getElementById('confirmSection').style.display = 'block';
+                document.getElementById('statusMessage').style.display = 'none';
+            } catch (error) {
+                document.getElementById('statusText').textContent = 'Viga pildi töötlemisel!';
+                document.getElementById('statusMessage').style.color = '#ef4444';
+                console.error('Pildi töötlemise viga:', error);
+            }
+        }
+    }
+
+    // Kinnita foto ja uuenda kõik slaidid
+    function confirmPhoto() {
+        if (pendingPhotoData) {
+            localStorage.setItem('presenterPhoto', pendingPhotoData);
+
+            // Uuenda KÕIK presenter-photo klassiga pildid
+            const allPhotos = document.querySelectorAll('.presenter-photo');
+            console.log('Leitud ' + allPhotos.length + ' esineja fotot');
+
+            allPhotos.forEach(img => {
+                img.src = pendingPhotoData;
+            });
+
+            // Näita edu teadet
+            document.getElementById('confirmSection').style.display = 'none';
+            document.getElementById('statusMessage').style.display = 'block';
+            document.getElementById('statusText').textContent = 'Foto uuendatud ' + allPhotos.length + ' kohas!';
+
+            pendingPhotoData = null;
+        }
+    }
+
+    // Vali eelseadistatud esineja
+    function selectPresetPresenter(photoUrl, name) {
+        // Lae pilt esmalt, et saada base64 versioon
+        fetch(photoUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoData = e.target.result;
+                    document.getElementById('presenterPhotoImg').src = photoData;
+                    localStorage.setItem('presenterPhoto', photoData);
+                    // Uuenda kohe kõik fotod
+                    document.querySelectorAll('.presenter-photo').forEach(img => {
+                        img.src = photoData;
+                    });
+                };
+                reader.readAsDataURL(blob);
+            })
+            .catch(() => {
+                // Fallback: kasuta otse URL-i
+                document.getElementById('presenterPhotoImg').src = photoUrl;
+                localStorage.setItem('presenterPhoto', photoUrl);
+            });
+
+        document.getElementById('presenterName').textContent = name;
+        document.getElementById('presenterNameInput').value = name;
+        localStorage.setItem('presenterName', name);
+    }
+
+    // Uuenda esineja nime
+    function updatePresenterName() {
+        const name = document.getElementById('presenterNameInput').value;
+        document.getElementById('presenterName').textContent = name || 'Esineja';
+        localStorage.setItem('presenterName', name);
+    }
+
+    // Alusta esitlust
+    function startPresentation() {
+        // Kui on kinnitamata foto, kinnita see esmalt
+        if (pendingPhotoData) {
+            confirmPhoto();
+        }
+
+        // Salvesta viimased väärtused
+        const name = document.getElementById('presenterNameInput').value;
+        localStorage.setItem('presenterName', name);
+
+        // Uuenda kõik fotod enne slaidi vahetust
+        const savedPhoto = localStorage.getItem('presenterPhoto');
+        if (savedPhoto) {
+            document.querySelectorAll('.presenter-photo').forEach(img => {
+                img.src = savedPhoto;
+            });
+        }
+
+        // Mine järgmisele slaidile
+        if (typeof goToSlide === 'function') {
+            goToSlide(1);
+        } else {
+            // Fallback: otse järgmine slaid
+            const slides = document.querySelectorAll('.slide');
+            slides[0].classList.remove('active');
+            slides[1].classList.add('active');
+        }
+    }
+
+    // Jäta seadistamine vahele
+    function skipSetup() {
+        startPresentation();
+    }
+    </script>
+</div>
