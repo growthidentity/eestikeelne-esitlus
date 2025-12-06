@@ -2,93 +2,10 @@
 <html lang="et">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypque & Mobicryp - Professional Presentation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta http-equiv="refresh" content="0; url=presentation.html">
+    <title>Crypque & Mobicryp - Esitlus</title>
 </head>
 <body>
-    <div class="presentation" id="presentation">
-        <!-- Slides will be loaded dynamically here -->
-    </div>
-
-    <div class="nav-controls">
-        <button class="nav-btn" onclick="prevSlide()">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="nav-btn" onclick="nextSlide()">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
-
-    <div class="slide-counter">
-        <span id="currentSlide">1</span> / <span id="totalSlides">20</span>
-    </div>
-
-    <script>
-        // Load all slides dynamically
-        async function loadSlides() {
-            const presentation = document.getElementById('presentation');
-            const slideFiles = [
-                'slides/slide-01.html',
-                'slides/slide-02.html',
-                'slides/slide-03.html',
-                'slides/slide-04.html',
-                'slides/slide-05.html',
-                'slides/slide-06.html',
-                'slides/slide-07.html',
-                'slides/slide-08.html',
-                'slides/slide-09.html',
-                'slides/slide-10.html',
-                'slides/slide-11.html',
-                'slides/slide-12.html',
-                'slides/slide-13.html',
-                'slides/slide-14.html',
-                'slides/slide-15.html',
-                'slides/slide-16.html',
-                'slides/slide-17.html',
-                'slides/slide-18.html',
-                'slides/slide-19.html',
-                'slides/slide-20.html'
-            ];
-
-            for (let i = 0; i < slideFiles.length; i++) {
-                try {
-                    const response = await fetch(slideFiles[i]);
-                    const html = await response.text();
-                    presentation.innerHTML += html;
-                } catch (error) {
-                    console.error(`Error loading ${slideFiles[i]}:`, error);
-                }
-            }
-
-            // After all slides are loaded, initialize the presentation
-            initializePresentation();
-        }
-
-        function initializePresentation() {
-            // Get all slides
-            window.slides = document.querySelectorAll('.slide');
-            window.totalSlides = slides.length;
-            window.currentSlide = 0;
-
-            // Update total slides counter
-            document.getElementById('totalSlides').textContent = totalSlides;
-
-            // Make sure first slide is active
-            if (slides.length > 0) {
-                slides[0].classList.add('active');
-            }
-
-            // Load the main script
-            const script = document.createElement('script');
-            script.src = 'js/script.js';
-            document.body.appendChild(script);
-        }
-
-        // Load slides when page loads
-        window.addEventListener('DOMContentLoaded', loadSlides);
-    </script>
+    <p>Suunan esitlusele... <a href="presentation.html">Vajuta siia kui ei suunata automaatselt</a></p>
 </body>
 </html>
