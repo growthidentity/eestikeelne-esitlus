@@ -1,22 +1,22 @@
-<div class="slide setup-slide" style="position: relative; overflow: hidden;">
+<div class="slide active setup-slide" style="position: relative; overflow: visible; background: linear-gradient(135deg, rgba(15, 12, 8, 1) 0%, rgba(30, 25, 18, 1) 50%, rgba(15, 12, 8, 1) 100%); min-height: 100vh;">
     <!-- Background -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
         <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=95" alt="Setup" style="width: 100%; height: 100%; object-fit: cover;">
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 8, 0.96) 0%, rgba(30, 25, 18, 0.94) 50%, rgba(15, 12, 8, 0.96) 100%);"></div>
     </div>
 
     <!-- Content -->
-    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; padding: 60px;">
+    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 40px;">
 
         <!-- Gold Line -->
         <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-bottom: 30px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
 
         <!-- Title -->
         <div style="font-family: 'Montserrat', sans-serif; font-size: 2.5em; font-weight: 700; color: white; text-align: center; margin-bottom: 10px; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-            <i class="fas fa-user-circle" style="color: #f4d03f; margin-right: 15px;"></i>Esineja Seadistamine
+            <i class="fas fa-user-circle" style="color: #f4d03f; margin-right: 15px;"></i>Presenter Setup
         </div>
         <div style="font-family: 'Open Sans', sans-serif; font-size: 1.2em; color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 40px;">
-            Lisa oma foto, mis kuvatakse kogu esitluse jooksul
+            Add your photo that will be displayed throughout the presentation
         </div>
 
         <!-- Setup Card -->
@@ -25,49 +25,49 @@
             <!-- Photo Preview -->
             <div style="text-align: center; margin-bottom: 30px;">
                 <div id="presenterPhotoPreview" style="width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 20px; border: 4px solid #f4d03f; box-shadow: 0 10px 40px rgba(244, 208, 63, 0.3); overflow: hidden; background: linear-gradient(135deg, rgba(201, 162, 39, 0.3), rgba(244, 208, 63, 0.2)); display: flex; align-items: center; justify-content: center;">
-                    <img id="presenterPhotoImg" src="LOGOS/Vambola Tullus.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="Esineja">
+                    <img id="presenterPhotoImg" src="LOGOS/Vambola Tullus.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="Presenter">
                 </div>
                 <div id="presenterName" style="font-family: 'Montserrat', sans-serif; font-size: 1.3em; font-weight: 600; color: #f4d03f; margin-bottom: 5px;">Vambola Tullus</div>
-                <div style="font-size: 0.9em; color: rgba(255,255,255,0.6);">Praegune esineja</div>
+                <div style="font-size: 0.9em; color: rgba(255,255,255,0.6);">Current presenter</div>
             </div>
 
             <!-- Upload Section -->
             <div style="text-align: center;">
                 <label for="presenterPhotoInput" style="display: inline-block; background: linear-gradient(135deg, #c9a227, #f4d03f); color: #0f0c08; padding: 15px 40px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1em; cursor: pointer; box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4); transition: all 0.3s; border: none;">
-                    <i class="fas fa-camera" style="margin-right: 10px;"></i>Vali Uus Foto
+                    <i class="fas fa-camera" style="margin-right: 10px;"></i>Choose New Photo
                 </label>
                 <input type="file" id="presenterPhotoInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
 
                 <!-- Confirmation Button (appears after upload) -->
                 <div id="confirmSection" style="display: none; margin-top: 20px;">
                     <button onclick="confirmPhoto()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 12px 30px; border-radius: 30px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95em; cursor: pointer; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); border: none;">
-                        <i class="fas fa-check" style="margin-right: 8px;"></i>Kinnita Foto
+                        <i class="fas fa-check" style="margin-right: 8px;"></i>Confirm Photo
                     </button>
                 </div>
 
                 <!-- Status Message -->
                 <div id="statusMessage" style="margin-top: 15px; font-size: 0.9em; color: #10b981; display: none;">
                     <i class="fas fa-check-circle" style="margin-right: 5px;"></i>
-                    <span id="statusText">Foto uuendatud!</span>
+                    <span id="statusText">Photo updated!</span>
                 </div>
 
                 <div style="margin-top: 15px; font-size: 0.85em; color: rgba(255,255,255,0.5);">
-                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i>Soovitav: ruudukujuline foto (min 200x200px)
+                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i>Recommended: square photo (min 200x200px)
                 </div>
             </div>
 
             <!-- Name Input -->
             <div style="margin-top: 30px; padding-top: 25px; border-top: 1px solid rgba(244, 208, 63, 0.2);">
                 <label style="display: block; font-size: 0.9em; color: rgba(255,255,255,0.7); margin-bottom: 10px;">
-                    <i class="fas fa-user" style="margin-right: 8px; color: #f4d03f;"></i>Esineja Nimi
+                    <i class="fas fa-user" style="margin-right: 8px; color: #f4d03f;"></i>Presenter Name
                 </label>
-                <input type="text" id="presenterNameInput" placeholder="Sinu nimi" value="Vambola Tullus" style="width: 100%; padding: 15px 20px; border-radius: 15px; border: 2px solid rgba(244, 208, 63, 0.3); background: rgba(255,255,255,0.05); color: white; font-size: 1.1em; font-family: 'Open Sans', sans-serif; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#f4d03f'" onblur="this.style.borderColor='rgba(244, 208, 63, 0.3)'" oninput="updatePresenterName()">
+                <input type="text" id="presenterNameInput" placeholder="Your name" value="Vambola Tullus" style="width: 100%; padding: 15px 20px; border-radius: 15px; border: 2px solid rgba(244, 208, 63, 0.3); background: rgba(255,255,255,0.05); color: white; font-size: 1.1em; font-family: 'Open Sans', sans-serif; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#f4d03f'" onblur="this.style.borderColor='rgba(244, 208, 63, 0.3)'" oninput="updatePresenterName()">
             </div>
 
             <!-- Preset Photos -->
             <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(244, 208, 63, 0.2);">
                 <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); margin-bottom: 15px; text-align: center;">
-                    <i class="fas fa-users" style="margin-right: 8px; color: #f4d03f;"></i>Või vali olemasolev esineja:
+                    <i class="fas fa-users" style="margin-right: 8px; color: #f4d03f;"></i>Or select an existing presenter:
                 </div>
                 <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
                     <div onclick="selectPresetPresenter('LOGOS/Vambola Tullus.jpg', 'Vambola Tullus')" style="cursor: pointer; text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
@@ -76,19 +76,20 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Start Button -->
         <div style="margin-top: 40px;">
             <button onclick="startPresentation()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px 60px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.3em; cursor: pointer; box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4); border: none; transition: all 0.3s;">
-                <i class="fas fa-play" style="margin-right: 15px;"></i>Alusta Esitlust
+                <i class="fas fa-play" style="margin-right: 15px;"></i>Start Presentation
             </button>
         </div>
 
         <!-- Skip Link -->
         <div style="margin-top: 20px;">
             <a href="javascript:void(0)" onclick="skipSetup()" style="color: rgba(255,255,255,0.5); font-size: 0.9em; text-decoration: none;">
-                <i class="fas fa-forward" style="margin-right: 5px;"></i>Jäta vahele (kasuta vaikeväärtusi)
+                <i class="fas fa-forward" style="margin-right: 5px;"></i>Skip (use defaults)
             </a>
         </div>
 
@@ -159,7 +160,7 @@
         if (file) {
             // Näita laadimise teadet
             document.getElementById('statusMessage').style.display = 'block';
-            document.getElementById('statusText').textContent = 'Töötlen pilti...';
+            document.getElementById('statusText').textContent = 'Processing image...';
             document.getElementById('statusMessage').style.color = '#f4d03f';
 
             try {
@@ -171,7 +172,7 @@
                 document.getElementById('confirmSection').style.display = 'block';
                 document.getElementById('statusMessage').style.display = 'none';
             } catch (error) {
-                document.getElementById('statusText').textContent = 'Viga pildi töötlemisel!';
+                document.getElementById('statusText').textContent = 'Error processing image!';
                 document.getElementById('statusMessage').style.color = '#ef4444';
                 console.error('Pildi töötlemise viga:', error);
             }
@@ -232,7 +233,7 @@
     // Uuenda esineja nime
     function updatePresenterName() {
         const name = document.getElementById('presenterNameInput').value;
-        document.getElementById('presenterName').textContent = name || 'Esineja';
+        document.getElementById('presenterName').textContent = name || 'Presenter';
         localStorage.setItem('presenterName', name);
     }
 
@@ -270,5 +271,6 @@
     function skipSetup() {
         startPresentation();
     }
+
     </script>
 </div>
