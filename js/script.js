@@ -1,74 +1,30 @@
 let currentSlide = 0;
-let slides = [];
-let totalSlides = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
 
-// Uuenda kõik esineja fotod localStorage-ist
-function updateAllPresenterPhotos() {
-    const savedPhoto = localStorage.getItem('presenterPhoto');
-    if (savedPhoto) {
-        const presenterPhotos = document.querySelectorAll('.presenter-photo');
-        presenterPhotos.forEach(img => {
-            img.src = savedPhoto;
-        });
-    }
-}
-
-// Mine otse slaidile (kasutatakse setup slaidist)
-function goToSlide(n) {
-    if (slides.length === 0) return;
-    slides[currentSlide].classList.remove('active');
-    currentSlide = n;
-    slides[currentSlide].classList.add('active');
-
-    const currentSlideElement = document.getElementById('currentSlide');
-    if (currentSlideElement) {
-        currentSlideElement.textContent = currentSlide;
-    }
-
-    // Uuenda fotod iga kord kui slaid vahetub
-    updateAllPresenterPhotos();
-}
-
-// Initialize slides after DOM is fully loaded
-function initSlides() {
-    slides = document.querySelectorAll('.slide');
-    totalSlides = slides.length;
-
-    const totalSlidesElement = document.getElementById('totalSlides');
-    if (totalSlidesElement) {
-        totalSlidesElement.textContent = totalSlides;
-    }
-
-    // Show first slide on load (setup slide)
-    if (slides.length > 0) {
-        slides[0].classList.add('active');
-    }
-
-    // Uuenda esineja fotod kohe laadimisel
-    updateAllPresenterPhotos();
-}
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSlides);
-} else {
-    initSlides();
-}
+document.getElementById('totalSlides').textContent = totalSlides;
 
 function showSlide(n) {
-    if (slides.length === 0) return;
-
     slides[currentSlide].classList.remove('active');
     currentSlide = (n + totalSlides) % totalSlides;
     slides[currentSlide].classList.add('active');
+    document.getElementById('currentSlide').textContent = currentSlide + 1;
 
-    const currentSlideElement = document.getElementById('currentSlide');
-    if (currentSlideElement) {
-        currentSlideElement.textContent = currentSlide;
+    // Update presenter photos from localStorage
+    updateAllPresenterPhotos();
+
+    // Apply localization to the new slide
+    if (window.MarketLocalization) {
+        window.MarketLocalization.applyFullLocalization();
     }
 
-    // Uuenda esineja fotod iga slaidi vahetusel
-    updateAllPresenterPhotos();
+    // Update calculator and leverage slides if they exist
+    if (typeof window.updateCalculator === 'function') {
+        window.updateCalculator();
+    }
+    if (typeof window.updateLeverageSlide === 'function') {
+        window.updateLeverageSlide();
+    }
 }
 
 function nextSlide() {
@@ -79,15 +35,35 @@ function prevSlide() {
     showSlide(currentSlide - 1);
 }
 
-document.addEventListener('keydown', (e) => {
-    // Ära reageeri kui fookus on input väljal
-    const activeElement = document.activeElement;
-    const isInputField = activeElement.tagName === 'INPUT' ||
-                         activeElement.tagName === 'TEXTAREA' ||
-                         activeElement.isContentEditable;
+// Go to specific slide (for setup page)
+function goToSlide(n) {
+    showSlide(n);
+}
 
-    if (isInputField) {
-        return; // Lase kasutajal tippida
+// Update all presenter photos from localStorage
+function updateAllPresenterPhotos() {
+    const savedPhoto = localStorage.getItem('presenterPhoto');
+    if (savedPhoto) {
+        document.querySelectorAll('.presenter-photo').forEach(img => {
+            img.src = savedPhoto;
+        });
+    }
+}
+
+// Update photos on load
+window.addEventListener('load', updateAllPresenterPhotos);
+
+// Apply localization on load
+window.addEventListener('load', function() {
+    if (window.MarketLocalization) {
+        window.MarketLocalization.applyFullLocalization();
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    // Don't change slides if typing in an input field
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+        return;
     }
 
     if (e.key === 'ArrowRight' || e.key === ' ') {
@@ -100,22 +76,61 @@ document.addEventListener('keydown', (e) => {
 });
 
 let touchStartX = 0;
+let touchStartY = 0;
 let touchEndX = 0;
+let touchEndY = 0;
+let touchStartTime = 0;
 
 document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+    touchStartTime = Date.now();
 });
 
 document.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
+    touchEndY = e.changedTouches[0].screenY;
+    handleTouchEnd(e);
 });
 
-function handleSwipe() {
-    if (touchEndX < touchStartX - 50) {
-        nextSlide();
+function handleTouchEnd(e) {
+    const touchDuration = Date.now() - touchStartTime;
+    const deltaX = Math.abs(touchEndX - touchStartX);
+    const deltaY = Math.abs(touchEndY - touchStartY);
+
+    // Skip if on setup slide (slide 0)
+    if (currentSlide === 0) {
+        return;
     }
-    if (touchEndX > touchStartX + 50) {
-        prevSlide();
+
+    // Check if it's a tap (not a swipe) - short duration and minimal movement
+    const isTap = touchDuration < 300 && deltaX < 30 && deltaY < 30;
+
+    // Check if tapped on interactive element (buttons, inputs, links, etc.)
+    const target = e.target;
+    const isInteractive = target.closest('button, a, input, select, textarea, .market-option, [onclick]');
+
+    if (isTap && !isInteractive) {
+        // Tap navigation - left half = back, right half = forward
+        const screenWidth = window.innerWidth;
+        const tapX = touchEndX;
+
+        if (tapX < screenWidth * 0.35) {
+            // Tapped on left 35% - go back
+            prevSlide();
+        } else if (tapX > screenWidth * 0.65) {
+            // Tapped on right 35% - go forward
+            nextSlide();
+        }
+        // Middle 30% does nothing (safe zone)
+    } else {
+        // Handle as swipe
+        if (deltaX > 50 && deltaX > deltaY) {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            } else if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
     }
 }
