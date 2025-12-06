@@ -2746,7 +2746,7 @@ body {
                 <div style="text-align: center; font-size: 13px; color: rgba(255,255,255,0.7);">
                     <i class="fas fa-info-circle" style="margin-right: 10px; color: #f4d03f;"></i>
                     <strong style="color: #f4d03f;">Tähtis:</strong> Kapital teenib 2.5× tagasi. Kogu investeeringu tegelik tootlus on ~111% pärast tasusid.
-                    <span style="margin-left: 15px; padding-left: 15px; border-left: 1px solid rgba(255,255,255,0.2);">Kurss: $1 = 0.86€</span>
+                    <span id="liveRateDisplay" style="margin-left: 15px; padding-left: 15px; border-left: 1px solid rgba(255,255,255,0.2);"><i class="fas fa-spinner fa-spin" style="margin-right: 5px;"></i>Laadin kurssi...</span>
                 </div>
             </div>
         </div>
@@ -2757,13 +2757,43 @@ body {
     </div>
 
     <script>
+    // Reaalajas EUR kurss - vaikeväärtus
+    window.liveEurRate = 0.86;
+
+    // Laadi reaalajas kurss
+    async function fetchExchangeRate() {
+        try {
+            const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+            const data = await response.json();
+            if (data && data.rates && data.rates.EUR) {
+                window.liveEurRate = data.rates.EUR;
+                // Uuenda kursi kuvamine
+                const rateDisplay = document.getElementById('liveRateDisplay');
+                if (rateDisplay) {
+                    rateDisplay.innerHTML = '<i class="fas fa-sync-alt" style="color: #10b981; margin-right: 5px;"></i>Reaalajas: $1 = ' + window.liveEurRate.toFixed(4) + '€';
+                }
+                // Uuenda kalkulaatorit uue kursiga
+                if (typeof updateCalculator === 'function') {
+                    updateCalculator();
+                }
+            }
+        } catch (error) {
+            console.log('Kursi laadimine ebaõnnestus, kasutan vaikeväärtust');
+        }
+    }
+
+    // Laadi kurss kohe
+    fetchExchangeRate();
+    // Uuenda iga 5 minuti järel
+    setInterval(fetchExchangeRate, 300000);
+
     // Kalkulaatori funktsioon - globaalne
     window.updateCalculator = function() {
         const totalInput = document.getElementById('calcTotal');
         if (!totalInput) return;
 
         const total = parseFloat(totalInput.value) || 0;
-        const eurRate = 0.86;
+        const eurRate = window.liveEurRate || 0.86;
 
         // Hub on ~12.82% kogu summast (1000/7800 = 0.1282)
         const hub = total * 0.1282;
