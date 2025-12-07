@@ -5,14 +5,26 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+/* CRITICAL: Force light color scheme to prevent OS dark mode from affecting presentation */
+html {
+    color-scheme: light only;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent dark mode from inverting colors */
+:root {
+    color-scheme: light only;
+}
+
+/* Override any dark mode image inversions */
+img, video, picture {
+    filter: none !important;
+}
+
 /* Prevent iOS zoom on input focus */
 input, select, textarea {
     font-size: 16px !important;
-}
-
-/* Smooth scrolling for iOS */
-html {
-    -webkit-overflow-scrolling: touch;
+    color-scheme: light;
 }
 
 :root {
