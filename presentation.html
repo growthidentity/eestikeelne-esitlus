@@ -11,6 +11,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent iOS zoom on input focus */
+input, select, textarea {
+    font-size: 16px !important;
+}
+
+/* Smooth scrolling for iOS */
+html {
+    -webkit-overflow-scrolling: touch;
 }
 
 :root {
@@ -897,9 +908,17 @@ body {
 /* ==================== BACKDROP-FILTER FALLBACKS ==================== */
 /* For browsers that don't support backdrop-filter */
 
-/* Add webkit prefix for Safari */
-div[style*="backdrop-filter: blur"] {
+/* Add webkit prefix for Safari - applies to all backdrop-filter elements */
+div[style*="backdrop-filter"] {
     -webkit-backdrop-filter: blur(15px);
+}
+
+.slide-header-bar {
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.slide-counter {
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Fallback for browsers without backdrop-filter support */
@@ -918,7 +937,9 @@ div[style*="backdrop-filter: blur"] {
 }
 
 /* Ensure all cards have solid background fallback */
-.premium-slide div[style*="backdrop-filter"] {
+.premium-slide div[style*="backdrop-filter"],
+.calculator-premium-slide div[style*="backdrop-filter"],
+.setup-slide div[style*="backdrop-filter"] {
     background-color: rgba(40, 40, 40, 0.9);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
@@ -926,6 +947,7 @@ div[style*="backdrop-filter: blur"] {
 
 /* Force background images to show */
 .premium-slide > div:first-child img,
+.calculator-premium-slide > div:first-child img,
 .slide > div:first-child img {
     display: block !important;
     visibility: visible !important;
@@ -933,14 +955,38 @@ div[style*="backdrop-filter: blur"] {
 
 /* Ensure content layer is always visible */
 .premium-slide > div[style*="z-index: 2"],
+.calculator-premium-slide > div[style*="z-index: 2"],
 .slide > div[style*="z-index: 2"] {
     position: relative !important;
     z-index: 2 !important;
 }
 
 /* Fallback dark background for premium slides */
-.premium-slide {
+.premium-slide,
+.calculator-premium-slide {
     background: #0f0c08 !important;
+}
+
+/* Safari/iOS gradient text fix */
+[style*="-webkit-background-clip: text"],
+[style*="background-clip: text"] {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* iOS Safari: ensure images don't break layout */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix for iOS input appearance */
+input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    border-radius: 0;
 }
 
 /* ==================== MOBILE RESPONSIVE STYLES ==================== */
@@ -957,7 +1003,7 @@ div[style*="backdrop-filter: blur"] {
     }
 }
 
-/* Tablet and smaller */
+/* Tablet and smaller (iPad) */
 @media screen and (max-width: 1024px) {
     .slide-content-wrapper {
         padding: 30px 40px;
@@ -994,6 +1040,51 @@ div[style*="backdrop-filter: blur"] {
     .slide-counter {
         padding: 12px 20px;
         font-size: 14px;
+    }
+
+    /* iPad specific fixes */
+    .premium-slide,
+    .calculator-premium-slide,
+    .setup-slide {
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Reduce large em font sizes for tablets */
+    [style*="font-size: 4.5em"],
+    [style*="font-size: 4em"] {
+        font-size: 3em !important;
+    }
+
+    [style*="font-size: 3.5em"],
+    [style*="font-size: 3em"] {
+        font-size: 2.5em !important;
+    }
+
+    [style*="font-size: 2.8em"],
+    [style*="font-size: 2.5em"],
+    [style*="font-size: 2.4em"] {
+        font-size: 2em !important;
+    }
+
+    /* Reduce padding for tablets */
+    [style*="padding: 50px 70px"],
+    [style*="padding: 50px 60px"] {
+        padding: 35px 45px !important;
+    }
+
+    /* Grid adjustments for tablets */
+    [style*="grid-template-columns: repeat(5, 1fr)"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    [style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Calculator flex layout for tablets */
+    .calculator-premium-slide [style*="display: flex"][style*="gap: 25px"] {
+        gap: 15px !important;
     }
 }
 
@@ -2026,6 +2117,85 @@ div[style*="backdrop-filter: blur"] {
     .slide-counter {
         bottom: 10px;
         left: 10px;
+    }
+}
+
+/* ==================== iOS SAFARI SPECIFIC FIXES ==================== */
+
+/* iOS Safari safe area for notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .slide {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+
+    .nav-controls {
+        bottom: calc(15px + env(safe-area-inset-bottom));
+        right: calc(15px + env(safe-area-inset-right));
+    }
+
+    .slide-counter {
+        bottom: calc(15px + env(safe-area-inset-bottom));
+        left: calc(15px + env(safe-area-inset-left));
+    }
+}
+
+/* iOS Safari: fix 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .slide,
+    .presentation {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Fix for iOS Safari momentum scrolling */
+.slide,
+.premium-slide,
+.calculator-premium-slide,
+.setup-slide {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent pull-to-refresh on iOS */
+body {
+    overscroll-behavior-y: contain;
+}
+
+/* ==================== MACBOOK/DESKTOP ENHANCEMENTS ==================== */
+
+/* Large screens - ensure content is centered and readable */
+@media screen and (min-width: 1440px) {
+    .slide-content-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    [style*="max-width: 1300px"],
+    [style*="max-width: 1200px"] {
+        max-width: 1400px !important;
+    }
+}
+
+/* Retina display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+    .nav-controls,
+    .slide-counter {
+        display: none !important;
+    }
+
+    .slide {
+        page-break-after: always;
+        height: auto !important;
+        position: relative !important;
     }
 }
 
@@ -5297,17 +5467,18 @@ let touchEndX = 0;
 let touchEndY = 0;
 let touchStartTime = 0;
 
+// Use passive listeners for better scroll performance on mobile
 document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
     touchStartTime = Date.now();
-});
+}, { passive: true });
 
 document.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     touchEndY = e.changedTouches[0].screenY;
     handleTouchEnd(e);
-});
+}, { passive: true });
 
 function handleTouchEnd(e) {
     const touchDuration = Date.now() - touchStartTime;

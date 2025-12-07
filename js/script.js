@@ -81,17 +81,18 @@ let touchEndX = 0;
 let touchEndY = 0;
 let touchStartTime = 0;
 
+// Use passive listeners for better scroll performance on mobile
 document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
     touchStartTime = Date.now();
-});
+}, { passive: true });
 
 document.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     touchEndY = e.changedTouches[0].screenY;
     handleTouchEnd(e);
-});
+}, { passive: true });
 
 function handleTouchEnd(e) {
     const touchDuration = Date.now() - touchStartTime;
