@@ -115,8 +115,8 @@
             totalInvestment = parseFloat(calcInput.value);
         }
 
-        // Teisenda eurodesse (ligikaudu)
-        const eurRate = 0.86;
+        // Kasuta reaalajas EUR kurssi (slide-13 laeb selle)
+        const eurRate = window.liveEurRate || 0.86;
         const totalEur = Math.round(totalInvestment * eurRate);
 
         // Arvuta nagu kalkulaatoris: Hub ~12.82%, kapital teenib 2.5x

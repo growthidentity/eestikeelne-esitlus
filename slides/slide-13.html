@@ -199,6 +199,13 @@
                 if (typeof updateCalculator === 'function') {
                     updateCalculator();
                 }
+                // Uuenda teisi slaide mis kasutavad EUR kurssi
+                if (typeof updateLeverageSlide === 'function') {
+                    updateLeverageSlide();
+                }
+                if (typeof updateMoroccoEur === 'function') {
+                    updateMoroccoEur();
+                }
             }
         } catch (error) {
             console.log('Kursi laadimine ebaõnnestus, kasutan vaikeväärtust');
@@ -209,6 +216,20 @@
     fetchExchangeRate();
     // Uuenda iga 5 minuti järel
     setInterval(fetchExchangeRate, 300000);
+
+    // Uuenda kõik EUR väärtused pärast lehe laadimist
+    window.addEventListener('load', function() {
+        // Oota veidi et kõik slaidide skriptid oleksid laetud
+        setTimeout(function() {
+            if (typeof updateLeverageSlide === 'function') updateLeverageSlide();
+            if (typeof updateMoroccoEur === 'function') updateMoroccoEur();
+        }, 100);
+        // Ja veel kord pärast kursi laadimist
+        setTimeout(function() {
+            if (typeof updateLeverageSlide === 'function') updateLeverageSlide();
+            if (typeof updateMoroccoEur === 'function') updateMoroccoEur();
+        }, 2000);
+    });
 
     // Kalkulaatori funktsioon - globaalne
     window.updateCalculator = function() {

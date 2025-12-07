@@ -3823,6 +3823,13 @@ body {
                 if (typeof updateCalculator === 'function') {
                     updateCalculator();
                 }
+                // Uuenda teisi slaide mis kasutavad EUR kurssi
+                if (typeof updateLeverageSlide === 'function') {
+                    updateLeverageSlide();
+                }
+                if (typeof updateMoroccoEur === 'function') {
+                    updateMoroccoEur();
+                }
             }
         } catch (error) {
             console.log('Kursi laadimine ebaõnnestus, kasutan vaikeväärtust');
@@ -3833,6 +3840,20 @@ body {
     fetchExchangeRate();
     // Uuenda iga 5 minuti järel
     setInterval(fetchExchangeRate, 300000);
+
+    // Uuenda kõik EUR väärtused pärast lehe laadimist
+    window.addEventListener('load', function() {
+        // Oota veidi et kõik slaidide skriptid oleksid laetud
+        setTimeout(function() {
+            if (typeof updateLeverageSlide === 'function') updateLeverageSlide();
+            if (typeof updateMoroccoEur === 'function') updateMoroccoEur();
+        }, 100);
+        // Ja veel kord pärast kursi laadimist
+        setTimeout(function() {
+            if (typeof updateLeverageSlide === 'function') updateLeverageSlide();
+            if (typeof updateMoroccoEur === 'function') updateMoroccoEur();
+        }, 2000);
+    });
 
     // Kalkulaatori funktsioon - globaalne
     window.updateCalculator = function() {
@@ -4010,8 +4031,8 @@ body {
             totalInvestment = parseFloat(calcInput.value);
         }
 
-        // Teisenda eurodesse (ligikaudu)
-        const eurRate = 0.86;
+        // Kasuta reaalajas EUR kurssi (slide-13 laeb selle)
+        const eurRate = window.liveEurRate || 0.86;
         const totalEur = Math.round(totalInvestment * eurRate);
 
         // Arvuta nagu kalkulaatoris: Hub ~12.82%, kapital teenib 2.5x
@@ -4083,6 +4104,55 @@ body {
 <div class="slide premium-slide" style="position: relative; overflow: hidden;">
     <!-- Background Image -->
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1920&q=95" alt="Partnership" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 8, 0.94) 0%, rgba(30, 25, 18, 0.90) 50%, rgba(15, 12, 8, 0.94) 100%);"></div>
+    </div>
+
+    <!-- Content -->
+    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; padding: 60px; text-align: center;">
+
+        <!-- Top Gold Line -->
+        <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-bottom: 40px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
+
+        <!-- Main Question -->
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 3.5em; font-weight: 700; color: white; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+            <i class="fas fa-handshake" style="color: #f4d03f; margin-right: 20px;"></i>Miks Ma Sulle Seda Raagin?
+        </div>
+
+        <!-- Subtitle -->
+        <div style="font-family: 'Open Sans', sans-serif; font-size: 1.5em; font-weight: 300; color: rgba(255,255,255,0.9); margin-bottom: 50px; letter-spacing: 2px;">
+            Aus vastus - ja voimalus sinule
+        </div>
+
+        <!-- Main Message Box -->
+        <div style="background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); backdrop-filter: blur(20px); border-radius: 25px; padding: 40px 60px; max-width: 900px; border: 1px solid rgba(244, 208, 63, 0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4); margin-bottom: 40px;">
+            <div style="font-size: 24px; color: rgba(255,255,255,0.95); line-height: 1.8;">
+                Kui sina teenid kasumit, teenin <span style="color: #f4d03f; font-weight: 700;">ka mina</span>.<br><br>
+                See on <span style="color: #10b981; font-weight: 700;">WIN-WIN</span>:<br>
+                Mida rohkem sina teenid, seda rohkem mina teenin.<br>
+                <span style="color: #10b981;">Meie huvid on uhised!</span>
+            </div>
+        </div>
+
+        <!-- Teaser for next slides -->
+        <div style="background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(244, 208, 63, 0.1)); backdrop-filter: blur(15px); border-radius: 20px; padding: 25px 40px; border: 2px solid rgba(244, 208, 63, 0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
+            <div style="font-size: 20px; color: #f4d03f; font-weight: 600;">
+                <i class="fas fa-lightbulb" style="margin-right: 12px;"></i>Ja kui tahad - saad ka sina seda teha!
+            </div>
+            <div style="font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 10px;">
+                Vaatame, kuidas partnerlusmudel tapselt tootab...
+            </div>
+        </div>
+
+        <!-- Bottom Gold Line -->
+        <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-top: 40px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
+    </div>
+</div>
+
+
+<div class="slide premium-slide" style="position: relative; overflow: hidden;">
+    <!-- Background Image -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
         <img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=1920&q=95" alt="Morocco Marrakech" style="width: 100%; height: 100%; object-fit: cover;">
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 8, 0.94) 0%, rgba(30, 25, 18, 0.90) 50%, rgba(15, 12, 8, 0.94) 100%);"></div>
     </div>
@@ -4145,7 +4215,7 @@ body {
                             <div style="font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900; color: #f4d03f; margin: 10px 0;">
                                 $7,800
                             </div>
-                            <div style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 15px;">
+                            <div style="font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 15px;" id="moroccoEurAmount">
                                 (~6,710€)
                             </div>
                             <div style="font-size: 16px; color: #10b981; font-weight: 600;">
@@ -4191,56 +4261,23 @@ body {
         </div>
 
         <!-- Bottom Gold Line -->
+
+        <script>
+        // Uuenda Maroko EUR summat reaalajas kursiga
+        window.updateMoroccoEur = function() {
+            const eurRate = window.liveEurRate || 0.86;
+            const usdAmount = 7800;
+            const eurAmount = Math.round(usdAmount * eurRate);
+            const moroccoEur = document.getElementById('moroccoEurAmount');
+            if (moroccoEur) {
+                moroccoEur.textContent = '(~' + eurAmount.toLocaleString('et-EE') + '€)';
+            }
+        };
+
+        // Käivita kohe
+        updateMoroccoEur();
+        </script>
         <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin: 25px auto 0; border-radius: 2px; box-shadow: 0 2px 10px rgba(201, 162, 39, 0.5);"></div>
-    </div>
-</div>
-
-
-<div class="slide premium-slide" style="position: relative; overflow: hidden;">
-    <!-- Background Image -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
-        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1920&q=95" alt="Partnership" style="width: 100%; height: 100%; object-fit: cover;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 8, 0.94) 0%, rgba(30, 25, 18, 0.90) 50%, rgba(15, 12, 8, 0.94) 100%);"></div>
-    </div>
-
-    <!-- Content -->
-    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; padding: 60px; text-align: center;">
-
-        <!-- Top Gold Line -->
-        <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-bottom: 40px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
-
-        <!-- Main Question -->
-        <div style="font-family: 'Montserrat', sans-serif; font-size: 3.5em; font-weight: 700; color: white; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-            <i class="fas fa-handshake" style="color: #f4d03f; margin-right: 20px;"></i>Miks Ma Sulle Seda Raagin?
-        </div>
-
-        <!-- Subtitle -->
-        <div style="font-family: 'Open Sans', sans-serif; font-size: 1.5em; font-weight: 300; color: rgba(255,255,255,0.9); margin-bottom: 50px; letter-spacing: 2px;">
-            Aus vastus - ja voimalus sinule
-        </div>
-
-        <!-- Main Message Box -->
-        <div style="background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); backdrop-filter: blur(20px); border-radius: 25px; padding: 40px 60px; max-width: 900px; border: 1px solid rgba(244, 208, 63, 0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4); margin-bottom: 40px;">
-            <div style="font-size: 24px; color: rgba(255,255,255,0.95); line-height: 1.8;">
-                Kui sina teenid kasumit, teenin <span style="color: #f4d03f; font-weight: 700;">ka mina</span>.<br><br>
-                See on <span style="color: #10b981; font-weight: 700;">WIN-WIN</span>:<br>
-                Mida rohkem sina teenid, seda rohkem mina teenin.<br>
-                <span style="color: #10b981;">Meie huvid on uhised!</span>
-            </div>
-        </div>
-
-        <!-- Teaser for next slides -->
-        <div style="background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(244, 208, 63, 0.1)); backdrop-filter: blur(15px); border-radius: 20px; padding: 25px 40px; border: 2px solid rgba(244, 208, 63, 0.4); box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
-            <div style="font-size: 20px; color: #f4d03f; font-weight: 600;">
-                <i class="fas fa-lightbulb" style="margin-right: 12px;"></i>Ja kui tahad - saad ka sina seda teha!
-            </div>
-            <div style="font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 10px;">
-                Vaatame, kuidas partnerlusmudel tapselt tootab...
-            </div>
-        </div>
-
-        <!-- Bottom Gold Line -->
-        <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #c9a227, #f4d03f, #c9a227); margin-top: 40px; border-radius: 2px; box-shadow: 0 2px 15px rgba(201, 162, 39, 0.5);"></div>
     </div>
 </div>
 
