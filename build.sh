@@ -10,9 +10,9 @@ import os
 with open('css/styles.css', 'r') as f:
     css = f.read()
 
-# Read all slides in order (00-25) - 00 is setup slide
+# Read all slides in order (00-23) - 00 is setup slide
 slides_html = ''
-for i in range(0, 26):
+for i in range(0, 24):
     slide_file = f'slides/slide-{i:02d}.html'
     with open(slide_file, 'r') as f:
         slide_content = f.read()
@@ -52,7 +52,7 @@ html = f'''<!DOCTYPE html>
     </div>
 
     <div class="slide-counter">
-        <span id="currentSlide">0</span> / <span id="totalSlides">26</span>
+        <span id="currentSlide">0</span> / <span id="totalSlides">24</span>
     </div>
 
     <script>
