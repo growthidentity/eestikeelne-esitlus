@@ -6,7 +6,7 @@
     </div>
 
     <!-- Content -->
-    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; padding: 30px 50px;">
+    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; padding: 30px 40px;">
 
         <!-- Premium Header Bar -->
         <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
@@ -21,155 +21,178 @@
         </div>
 
         <!-- Main Content Area -->
-        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1300px; margin: 0 auto; width: 100%;">
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1400px; margin: 0 auto; width: 100%;">
 
             <!-- Title -->
-            <div style="font-family: 'Montserrat', sans-serif; font-size: 2em; font-weight: 700; color: white; margin-bottom: 5px; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-                <i class="fas fa-trophy" style="color: #f59e0b; margin-right: 15px;"></i>Karjääriredel - 13 Astet
-            </div>
-            <div style="font-family: 'Open Sans', sans-serif; font-size: 1em; font-weight: 300; color: rgba(255,255,255,0.7); margin-bottom: 15px;">
-                Iga aste = ühekordne boonus + lisahüved | Maht = ainult lepingud (Hub)
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 2em; font-weight: 700; color: white; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                    <i class="fas fa-trophy" style="color: #f59e0b; margin-right: 15px;"></i>Karjääriredel
+                </div>
+                <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 5px;">Maht = ainult lepingud (Hub) | 50% tugevam pool + 50% nõrgem pool</div>
             </div>
 
-            <!-- Row 1: First 7 ranks -->
-            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 8px;">
+            <!-- Bars Container -->
+            <div style="display: flex; align-items: flex-end; justify-content: center; gap: 6px; height: 320px; padding: 0 10px;">
+
                 <!-- Beginner -->
-                <div style="background: linear-gradient(135deg, rgba(156, 163, 175, 0.2), rgba(156, 163, 175, 0.08)); border-radius: 10px; padding: 12px 6px; border: 1px solid rgba(156, 163, 175, 0.4); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">🌱</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #9ca3af; margin-bottom: 4px;">BEGINNER</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$1K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$50</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #9ca3af; margin-bottom: 5px; text-align: center;">BEGINNER</div>
+                    <div style="width: 100%; height: 60px; background: linear-gradient(180deg, #9ca3af 0%, #6b7280 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$1K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$50</div>
+                    </div>
                 </div>
 
                 <!-- Star -->
-                <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(251, 191, 36, 0.05)); border-radius: 10px; padding: 12px 6px; border: 1px solid rgba(251, 191, 36, 0.4); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">⭐</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #fbbf24; margin-bottom: 4px;">STAR</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$2.5K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$100</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #fbbf24; margin-bottom: 5px; text-align: center;">STAR</div>
+                    <div style="width: 100%; height: 80px; background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$2.5K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$100</div>
+                    </div>
                 </div>
 
                 <!-- Iron -->
-                <div style="background: linear-gradient(135deg, rgba(107, 114, 128, 0.2), rgba(107, 114, 128, 0.08)); border-radius: 10px; padding: 12px 6px; border: 1px solid rgba(107, 114, 128, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">⚔️</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #6b7280; margin-bottom: 4px;">IRON</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$5K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$200</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #6b7280; margin-bottom: 5px; text-align: center;">IRON</div>
+                    <div style="width: 100%; height: 95px; background: linear-gradient(180deg, #6b7280 0%, #4b5563 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$5K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$200</div>
+                    </div>
                 </div>
 
                 <!-- Bronze -->
-                <div style="background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.08)); border-radius: 10px; padding: 12px 6px; border: 1px solid rgba(205, 127, 50, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">🥉</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #cd7f32; margin-bottom: 4px;">BRONZE</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$10K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$500</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #cd7f32; margin-bottom: 5px; text-align: center;">BRONZE</div>
+                    <div style="width: 100%; height: 110px; background: linear-gradient(180deg, #cd7f32 0%, #a05a2c 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$10K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$500</div>
+                    </div>
                 </div>
 
                 <!-- Copper -->
-                <div style="background: linear-gradient(135deg, rgba(184, 115, 51, 0.2), rgba(184, 115, 51, 0.08)); border-radius: 10px; padding: 12px 6px; border: 1px solid rgba(184, 115, 51, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">🔶</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #b87333; margin-bottom: 4px;">COPPER</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$25K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$1,000</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #b87333; margin-bottom: 5px; text-align: center;">COPPER</div>
+                    <div style="width: 100%; height: 130px; background: linear-gradient(180deg, #b87333 0%, #8b5a2b 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$25K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$1K</div>
+                    </div>
                 </div>
 
                 <!-- Silver -->
-                <div style="background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.08)); border-radius: 10px; padding: 12px 6px; border: 1px solid rgba(192, 192, 192, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">🥈</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #c0c0c0; margin-bottom: 4px;">SILVER</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$50K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$2,000</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #c0c0c0; margin-bottom: 5px; text-align: center;">SILVER</div>
+                    <div style="width: 100%; height: 150px; background: linear-gradient(180deg, #c0c0c0 0%, #a8a8a8 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: #333; font-weight: 600;">$50K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$2K</div>
+                    </div>
                 </div>
 
                 <!-- Gold -->
-                <div style="background: linear-gradient(135deg, rgba(244, 208, 63, 0.25), rgba(244, 208, 63, 0.1)); border-radius: 10px; padding: 12px 6px; border: 2px solid rgba(244, 208, 63, 0.6); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">🥇</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #f4d03f; margin-bottom: 4px;">GOLD</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$100K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$5,000</div>
-                    <div style="font-size: 8px; color: #f4d03f; margin-top: 2px;">+10% Hub</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #f4d03f; margin-bottom: 5px; text-align: center;">GOLD ⭐</div>
+                    <div style="width: 100%; height: 170px; background: linear-gradient(180deg, #f4d03f 0%, #c9a227 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 0 20px rgba(244, 208, 63, 0.4);">
+                        <div style="font-size: 10px; color: #333; font-weight: 600;">$100K</div>
+                        <div style="font-size: 8px; color: #333; margin-top: 3px;">+ROYALTY</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$5K</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Row 2: Remaining 6 ranks -->
-            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 12px;">
                 <!-- Platinum -->
-                <div style="background: linear-gradient(135deg, rgba(229, 228, 226, 0.2), rgba(229, 228, 226, 0.08)); border-radius: 10px; padding: 12px 6px; border: 2px solid rgba(229, 228, 226, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">💿</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #e5e4e2; margin-bottom: 4px;">PLATINUM</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$250K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$10,000</div>
-                    <div style="font-size: 8px; color: #3b82f6; margin-top: 2px;">📱 $900</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #e5e4e2; margin-bottom: 5px; text-align: center;">PLATINUM</div>
+                    <div style="width: 100%; height: 190px; background: linear-gradient(180deg, #e5e4e2 0%, #b8b8b8 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: #333; font-weight: 600;">$250K</div>
+                        <div style="font-size: 8px; color: #333; margin-top: 3px;">📱 $900</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$10K</div>
+                    </div>
                 </div>
 
                 <!-- Titanium -->
-                <div style="background: linear-gradient(135deg, rgba(135, 134, 129, 0.2), rgba(135, 134, 129, 0.08)); border-radius: 10px; padding: 12px 6px; border: 2px solid rgba(135, 134, 129, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">⚙️</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #878681; margin-bottom: 4px;">TITANIUM</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$500K</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$20,000</div>
-                    <div style="font-size: 8px; color: #3b82f6; margin-top: 2px;">⌚ $2,500</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #878681; margin-bottom: 5px; text-align: center;">TITANIUM</div>
+                    <div style="width: 100%; height: 210px; background: linear-gradient(180deg, #878681 0%, #5a5a58 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$500K</div>
+                        <div style="font-size: 8px; color: white; margin-top: 3px;">⌚ $2.5K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$20K</div>
+                    </div>
                 </div>
 
                 <!-- Diamond -->
-                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.08)); border-radius: 10px; padding: 12px 6px; border: 2px solid rgba(59, 130, 246, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">💎</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 4px;">DIAMOND</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$1M</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$50,000</div>
-                    <div style="font-size: 8px; color: #f4d03f; margin-top: 2px;">🧱 250g kuld</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #3b82f6; margin-bottom: 5px; text-align: center;">DIAMOND</div>
+                    <div style="width: 100%; height: 230px; background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$1M</div>
+                        <div style="font-size: 8px; color: white; margin-top: 3px;">🧱 250g</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$50K</div>
+                    </div>
                 </div>
 
                 <!-- Solitaire -->
-                <div style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.08)); border-radius: 10px; padding: 12px 6px; border: 2px solid rgba(236, 72, 153, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">💍</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #ec4899; margin-bottom: 4px;">SOLITAIRE</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$2.5M</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$100K</div>
-                    <div style="font-size: 8px; color: #ec4899; margin-top: 2px;">🚗 $25K auto</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #ec4899; margin-bottom: 5px; text-align: center;">SOLITAIRE</div>
+                    <div style="width: 100%; height: 255px; background: linear-gradient(180deg, #f472b6 0%, #db2777 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$2.5M</div>
+                        <div style="font-size: 8px; color: white; margin-top: 3px;">🚗 $25K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$100K</div>
+                    </div>
                 </div>
 
                 <!-- Immortal -->
-                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.08)); border-radius: 10px; padding: 12px 6px; border: 2px solid rgba(139, 92, 246, 0.5); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">🔮</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #8b5cf6; margin-bottom: 4px;">IMMORTAL</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$5M</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$200K</div>
-                    <div style="font-size: 8px; color: #8b5cf6; margin-top: 2px;">🌍 $50K reis</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #8b5cf6; margin-bottom: 5px; text-align: center;">IMMORTAL</div>
+                    <div style="width: 100%; height: 280px; background: linear-gradient(180deg, #a78bfa 0%, #7c3aed 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$5M</div>
+                        <div style="font-size: 8px; color: white; margin-top: 3px;">🌍 $50K</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$200K</div>
+                    </div>
                 </div>
 
                 <!-- Emperor -->
-                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(168, 85, 247, 0.1)); border-radius: 10px; padding: 12px 6px; border: 2px solid rgba(168, 85, 247, 0.6); text-align: center;">
-                    <div style="font-size: 20px; margin-bottom: 4px;">👑</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 4px;">EMPEROR</div>
-                    <div style="font-size: 9px; color: rgba(255,255,255,0.5);">$10M</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #10b981;">$300K</div>
-                    <div style="font-size: 8px; color: #a855f7; margin-top: 2px;">🏠 VILLA</div>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 75px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; color: #a855f7; margin-bottom: 5px; text-align: center;">EMPEROR 👑</div>
+                    <div style="width: 100%; height: 305px; background: linear-gradient(180deg, #c084fc 0%, #9333ea 100%); border-radius: 8px 8px 0 0; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);">
+                        <div style="font-size: 10px; color: white; font-weight: 600;">$10M</div>
+                        <div style="font-size: 8px; color: white; margin-top: 3px;">🏠 VILLA</div>
+                    </div>
+                    <div style="background: rgba(16, 185, 129, 0.9); width: 100%; padding: 8px 4px; border-radius: 0 0 8px 8px; text-align: center;">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 900; color: white;">$300K</div>
+                    </div>
                 </div>
+
             </div>
 
-            <!-- Rules & Royalty -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <!-- 50/50 Rule -->
-                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05)); border-radius: 12px; padding: 15px; border: 1px solid rgba(239, 68, 68, 0.4);">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                        <i class="fas fa-balance-scale" style="font-size: 18px; color: #ef4444;"></i>
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: #ef4444;">50/50 REEGEL</span>
-                    </div>
-                    <div style="font-size: 11px; color: rgba(255,255,255,0.85); line-height: 1.5;">
-                        50% mahust peab tulema <strong style="color: #ef4444;">tugevamalt</strong> poolelt ja 50% <strong style="color: #ef4444;">nõrgemalt</strong> poolelt.
-                    </div>
-                </div>
-
-                <!-- Royalty -->
-                <div style="background: linear-gradient(135deg, rgba(244, 208, 63, 0.15), rgba(244, 208, 63, 0.05)); border-radius: 12px; padding: 15px; border: 1px solid rgba(244, 208, 63, 0.4);">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                        <i class="fas fa-infinity" style="font-size: 18px; color: #f4d03f;"></i>
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: #f4d03f;">ROYALTY (alates Gold)</span>
-                    </div>
-                    <div style="font-size: 11px; color: rgba(255,255,255,0.85); line-height: 1.5;">
-                        Alates Gold: <strong style="color: #f4d03f;">+10%</strong> Hub jaotusest. Iga järgmine aste <strong style="color: #f4d03f;">+2%</strong> lisaks. Makstakse <strong style="color: #f4d03f;">iga nädal</strong>.
-                    </div>
+            <!-- Royalty note -->
+            <div style="text-align: center; margin-top: 15px;">
+                <div style="display: inline-block; background: linear-gradient(135deg, rgba(244, 208, 63, 0.2), rgba(244, 208, 63, 0.1)); padding: 10px 25px; border-radius: 10px; border: 1px solid rgba(244, 208, 63, 0.4);">
+                    <span style="font-size: 12px; color: rgba(255,255,255,0.9);">
+                        <i class="fas fa-infinity" style="color: #f4d03f; margin-right: 8px;"></i>
+                        <strong style="color: #f4d03f;">ROYALTY</strong> alates Gold: +10% Hub jaotusest, iga järgmine aste +2% lisaks
+                    </span>
                 </div>
             </div>
         </div>
